@@ -39,13 +39,11 @@
         
     </style>
     <script>
-        let videoData = [];
+        let videos = [];
         let currentPage = 1;
         const videosPerPage = 10;
         const bufferPages = 2; // Number of pages to load before & after current page
         let currentCategory = ['JAV'];
-        let gallery;
-        let lazyImageObserver;
         
         function searchVideos() {
             const query = document.getElementById('search').value.toLowerCase();
@@ -60,23 +58,12 @@
             showPage(1); // Re-render visible videos
             closeModal();
         }
-
-        function searchVideos() {
-    const query = document.getElementById('search').value.toLowerCase();
-    const filtered = videoData.filter(video => 
-        video.title.toLowerCase().includes(query) || 
-        video.tags.toLowerCase().includes(query)
-    );
-    
-    currentPage = 1;
-    gallery.innerHTML = '';
-    filtered.forEach((video, i) => {
-        const isVisible = i < videosPerPage;
-        const el = createVideoElement(video, isVisible);
-        gallery.appendChild(el);
-    });
-}
-
+        function shuffleVideos() {
+            let gallery = document.querySelector('.gallery');
+            videos.sort(() => Math.random() - 0.5);
+            gallery.innerHTML = '';
+            videos.forEach(video => gallery.appendChild(video));
+        }
 
         function shuffleCategories() {
             let grid = document.querySelector('.category-grid');
@@ -85,6 +72,7 @@
             grid.innerHTML = '';
             categories.forEach(category => grid.appendChild(category));
         }
+        
 
        function searchCategories() {
             const query = document.getElementById('categorySearch').value.toLowerCase();
@@ -99,7 +87,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-       
 
 function showPage(page) {
     currentPage = page;
@@ -192,7 +179,14 @@ function createVideoElement(video, isVisible) {
         function closeModal() { document.getElementById('categoryModal').style.display = 'none'; }
         
         function initializeGallery() {
-           gallery = document.querySelector('.gallery');// Display first page with all videos
+           videos = Array.from(document.querySelectorAll('.video'));
+           currentCategories = ['JAV']; // Ensure 'all' is set by default
+           document.getElementById('categoryBtn').innerText = 'Category - JAV';
+    
+           videos.forEach(video => video.style.display = 'flex'); // Show all videos initially
+
+           shuffleVideos(); // Shuffle only if needed
+           showPage(1); // Display first page with all videos
         }
         
         window.onclick = function(event) { if (event.target === document.getElementById('categoryModal')) closeModal(); }
@@ -270,12 +264,38 @@ function createVideoElement(video, isVisible) {
                            'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-19.jpg',
                            'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-20.jpg',]
         }
-    ];
+    ]
 
     let gallery = document.querySelector('.gallery');
 
     // Generate Video Thumbnails
-    
+    videoData.forEach(video => {
+        let container = document.createElement('div');
+        container.className = 'video';
+        container.dataset.category = video.category;
+        container.dataset.tags = video.tags;
+        container.dataset.title = video.title;
+        
+        let img = document.createElement('img');
+        img.dataset.src = video.thumbnail;
+        img.loading = 'lazy';
+        img.alt = video.title;
+        img.onclick = () => window.location.href = video.url;
+        
+        let title = document.createElement('span');
+        title.className = 'video-title';
+        title.textContent = video.title;
+        
+        let previewBtn = document.createElement('button');
+                previewBtn.className = 'preview-btn';
+                previewBtn.textContent = 'Preview';
+                previewBtn.onclick = () => openPreview(video.previewImages);
+        
+        container.appendChild(img);
+        container.appendChild(title);
+        container.appendChild(previewBtn);
+        gallery.appendChild(container);
+    });
     
     // Lazy load images using Intersection Observer
 document.addEventListener('DOMContentLoaded', function() {
