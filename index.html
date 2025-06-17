@@ -29,9 +29,9 @@
         .page-btn:disabled { background: #ccc; cursor: not-allowed; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;}
         .modal-content { background: white; padding: 0px; border-radius: 10px; text-align: center; max-width: 500px; width: 95%; height: 600px; overflow-y: auto;}
-        .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 6px; }
+        .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
         .category-item { cursor: pointer; text-align: center; }
-        .category-item img { width: 112px; height: 171px; border-radius: 10px;border: 1px solid #7d7d7d; }
+        .category-item img { width: 160px; height: 240px; border-radius: 10px;border: 1px solid #7d7d7d; }
         .category-item span { display: block; margin-top: 5px; margin-bottom: 10px; font-weight: bold; }
         img[data-src] { background: #f5f5f5; }
         .lazy { opacity: 0; transition: opacity 0.3s; }
@@ -206,22 +206,46 @@ function createVideoElement(video, isVisible) {
                <input type="text" id="categorySearch" class="search-bar" placeholder="Search categories..." onkeyup="searchCategories()" style="border: 1px solid #ccc; padding: 10px; border-radius: 25px; width: 90%; margin-top: 10px;">
              </div>
             <div class="category-grid">
-                <div class="category-item" onclick="filterCategory('Asian')"><img data-src="https://lh3.googleusercontent.com/d/1-q7Gh1RF-sYURxDXtXoETJWz5mWRykPQ=s0" loading="lazy" alt="Asian"><span>Asian</span></div>
-                <div class="category-item" onclick="filterCategory('JAV')"><img data-src="https://lh3.googleusercontent.com/d/1-Rz8Dyr82oA7Q6Y0V4-r_BmFZ-4ctXp0=s0" loading="lazy" alt="JAV"><span>JAV</span></div>
-                <div class="category-item" onclick="filterCategory('Regular')"><img data-src="https://lh3.googleusercontent.com/d/1-wGK-TJkdjm1txLvFnSI7NH30u6E1S21=s0" loading="lazy" alt="Regular"><span>Regular</span></div>
-                <div class="category-item" onclick="filterCategory('Movies')"><img data-src="https://lh3.googleusercontent.com/d/1-Q4r0JOIKUVPHcwFi4vcYTde59dBmz5A=s0" loading="lazy" alt="Movies"><span>Movies</span></div>
-                <div class="category-item" onclick="filterCategory('PhotoGallery')"><img data-src="https://lh3.googleusercontent.com/d/11N90VFL7M_rDf9u9_Wz8nQ4gta7yxmF7=s0" loading="lazy" alt="PhotoGallery"><span>Photo Gallery</span></div>
-                <div class="category-item" onclick="filterCategory('Desi')"><img data-src="https://lh3.googleusercontent.com/d/1-wErMYiW9mOia5zhaEuMyx4gsaRQLvgl=s0" loading="lazy" alt="Desi"><span>Desi</span></div>              
+                <div class="category-item" onclick="filterCategory('Asian')"><img data-src="https://lh3.googleusercontent.com/d/1-q7Gh1RF-sYURxDXtXoETJWz5mWRykPQ=s0" alt="Asian"><span>Asian</span></div>
+                <div class="category-item" onclick="filterCategory('JAV')"><img data-src="https://lh3.googleusercontent.com/d/1-Rz8Dyr82oA7Q6Y0V4-r_BmFZ-4ctXp0=s0"  alt="JAV"><span>JAV</span></div>
+                <div class="category-item" onclick="filterCategory('Regular')"><img data-src="https://lh3.googleusercontent.com/d/1-wGK-TJkdjm1txLvFnSI7NH30u6E1S21=s0"  alt="Regular"><span>Regular</span></div>
+                <div class="category-item" onclick="filterCategory('Movies')"><img data-src="https://lh3.googleusercontent.com/d/1-Q4r0JOIKUVPHcwFi4vcYTde59dBmz5A=s0"  alt="Movies"><span>Movies</span></div>
+                <div class="category-item" onclick="filterCategory('PhotoGallery')"><img data-src="https://lh3.googleusercontent.com/d/11N90VFL7M_rDf9u9_Wz8nQ4gta7yxmF7=s0"  alt="PhotoGallery"><span>Photo Gallery</span></div>
+                <div class="category-item" onclick="filterCategory('Desi')"><img data-src="https://lh3.googleusercontent.com/d/1-wErMYiW9mOia5zhaEuMyx4gsaRQLvgl=s0"  alt="Desi"><span>Desi</span></div>              
                 
-                
 
-                <div class="category-item" onclick="filterCategory('Minamo')"><img data-src="https://www.xasiat.com/get_image/2/13d69d6e4e89348a6d9cb70f8bbc1dd1/sources/2000/2434/171091.jpg/" loading="lazy" alt="Minamo"><span>Minamo</span></div>
-                <div class="category-item" onclick="filterCategory('Yatsugake Umi')"><img data-src="https://www.xasiat.com/get_image/2/44998dd62e599dc3d4f72f1e793e9d58/sources/2000/2245/159810.jpg/" loading="lazy" alt="Yatsugake Umi"><span>Yatsugake Umi</span></div>
-                <div class="category-item" onclick="filterCategory('Yoshitaka Nene')"><img data-src="https://jav.photos/pictures/japanese/nene-yoshitaka/11/nene-yoshitaka-11.jpg" loading="lazy" alt="Yoshitaka Nene"><span>Yoshitaka Nene</span></div>
-
-                <div class="category-item" onclick="filterCategory('Ai Xi')"><img data-src="https://3xchina.net/wp-content/uploads/2024/07/mdsj0008_1.jpg" loading="lazy" alt="Ai Xi"><span>Ai Xi</span></div>
-                <div class="category-item" onclick="filterCategory('Mia Khalifa')"><img data-src="https://cdni.pornpics.com/1280/7/633/26210531/26210531_046_43be.jpg" loading="lazy" alt="Mia Khalifa"><span>Mia Khalifa</span></div>
-
+                <div class="category-item" onclick="filterCategory('Arata Arina')"><img data-src="https://lh3.googleusercontent.com/d/15YTRCB6Rrgiv5uQMi6y9fY7YTPmOusJW"  alt="Arata Arina"><span>Arata Arina</span></div>
+                <div class="category-item" onclick="filterCategory('Asano Kokoro')"><img data-src="https://lh3.googleusercontent.com/d/13TKLdkbxAkuw6a05esoPjV7G3FxqS_n8"  alt="Asano Kokoro"><span>Asano Kokoro</span></div>
+                <div class="category-item" onclick="filterCategory('Hayasaka Hime')"><img data-src="https://lh3.googleusercontent.com/d/15QTFVxxBxBG340akHDdo4mxbTyi9zAFz"  alt="Hayasaka Hime"><span>Hayasaka Hime</span></div>
+                <div class="category-item" onclick="filterCategory('Honjou Suzu')"><img data-src="https://lh3.googleusercontent.com/d/15CNd9Xf_5WoEU79_h6XoA2R6EUZfnlcM"  alt="Honjou Suzu"><span>Honjou Suzu</span></div>
+                <div class="category-item" onclick="filterCategory('Ishada Karen')"><img data-src="https://lh3.googleusercontent.com/d/15Cbnt0nEj-B5xLIrjm4_1qGJlfrzRrh9"  alt="Ishada Karen"><span>Ishada Karen</span></div>
+                <div class="category-item" onclick="filterCategory('Itsukaichi Mei')"><img data-src="https://lh3.googleusercontent.com/d/1590aJAgYvZTQXafRLFQM8nPjBhXjFV3j" alt="Itsukaichi Mei"><span>Itsukaichi Mei</span></div>
+                <div class="category-item" onclick="filterCategory('Minamo')"><img data-src="https://lh3.googleusercontent.com/d/13F5qz6Dg9EUA9_KI1nAeRsQ5fNK-nCFB" alt="Minamo"><span>Minamo</span></div>
+                <div class="category-item" onclick="filterCategory('Yoshitaka Nene')"><img data-src="https://lh3.googleusercontent.com/d/13dd8yEZuzyx5Yj31yJIdUoefj2kygQeY" alt="Yoshitaka Nene"><span>Yoshitaka Nene</span></div>
+                <div class="category-item" onclick="filterCategory('Yatsugake Umi')"><img data-src="https://lh3.googleusercontent.com/d/13uZgn64wryobSTq7SMQMFyFV2hDA2QI4" alt="Yatsugake Umi"><span>Yatsugake Umi</span></div>
+                <div class="category-item" onclick="filterCategory('Tachibana Mary')"><img data-src="https://lh3.googleusercontent.com/d/15_3vEPu0vITayCg3eJjOMXpUmpTcxpJI" alt="Tachibana Mary"><span>Tachibana Mary</span></div>
+                <div class="category-item" onclick="filterCategory('Shitara Yuuhi')"><img data-src="https://lh3.googleusercontent.com/d/13gQzdwUUMPDqsUjzSx9jaDoKaFw0_6-K" alt="Shitara Yuuhi"><span>Shitara Yuuhi</span></div>
+                <div class="category-item" onclick="filterCategory('Kaede Karen')"><img data-src="https://lh3.googleusercontent.com/d/151tX4Xuuls3qzuZRgE7egZ5-Yc90o4oW" alt="Kaede Karen"><span>Kaede Karen</span></div>
+                <div class="category-item" onclick="filterCategory('Miyajima Mei')"><img data-src="https://lh3.googleusercontent.com/d/14sQWLO4bcmDn-AlimVujYE2BKgoJbs4g" alt="Miyajima Mei"><span>Miyajima Mei</span></div>
+                <div class="category-item" onclick="filterCategory('Sakakihara Moe')"><img data-src="https://lh3.googleusercontent.com/d/13l9JhLM-pHwk9FS_PDll00AtdmebwPOL" alt="Sakakihara Moe"><span>Sakakihara Moe</span></div>
+                <div class="category-item" onclick="filterCategory('Kawakita Saika')"><img data-src="https://lh3.googleusercontent.com/d/13NLn5XnZV_KVRR7_EtUm6qbGn8Vqpp4w" alt="Kawakita Saika"><span>Kawakita Saika</span></div>
+                <div class="category-item" onclick="filterCategory('Nanatsumori Riri')"><img data-src="https://lh3.googleusercontent.com/d/13OkczwZyXT01U9-jzV4B6zFTm0AFuiOy" alt="Nanatsumori Riri"><span>Nanatsumori Riri</span></div>
+                <div class="category-item" onclick="filterCategory('Kodama Nanami')"><img data-src="https://lh3.googleusercontent.com/d/154RQeEbyraafSZDD6QKieXY2xELdz5nV" alt="Kodama Nanami"><span>Kodama Nanami</span></div>
+                <div class="category-item" onclick="filterCategory('Miho Nana')"><img data-src="https://lh3.googleusercontent.com/d/157Yh1rZ_okPhbUt7WkCTd6W3PAalWj8N" alt="Miho Nana"><span>Miho Nana</span></div>
+                <div class="category-item" onclick="filterCategory('Miyashita Rena')"><img data-src="https://lh3.googleusercontent.com/d/154t2XiQic1erJ3V9omTC4rjbHFEHfE5h" alt="Miyashita Rena"><span>Miyashita Rena</span></div>
+                <div class="category-item" onclick="filterCategory('Nonoura Non')"><img data-src="https://lh3.googleusercontent.com/d/15WIHB_pa-GfBHKxT4wdERvZzRr-b_UOR" alt="Nonoura Non"><span>Nonoura Non</span></div>
+                <div class="category-item" onclick="filterCategory('Sakura Norino')"><img data-src="https://lh3.googleusercontent.com/d/15Hru0i5O0KFPlD6S6YZ8fdE96i3L4SvP" alt="Sakura Norino"><span>Sakura Norino</span></div>
+                <div class="category-item" onclick="filterCategory('Sakura Momo')"><img data-src="https://lh3.googleusercontent.com/d/160LlM224pxbY_7Kef3ptJmAmcTd29bqY" alt="Sakura Momo"><span>Sakura Momo</span></div>
+                <div class="category-item" onclick="filterCategory('Kasumi Minami')"><img data-src="https://lh3.googleusercontent.com/d/15cGfFaQwTCsoL_7VoSV84Wnk8bubFlrI" alt="Kasumi Minami"><span>Kasumi Minami</span></div>
+                <div class="category-item" onclick="filterCategory('Minami Aizawa')"><img data-src="https://lh3.googleusercontent.com/d/164sA3dmx52D9K8QVOUbS13ex76XupaMI" alt="Minami Aizawa"><span>Minami Aizawa</span></div>
+                <div class="category-item" onclick="filterCategory('Mikami Yua')"><img data-src="https://lh3.googleusercontent.com/d/163Ehim2T7JDp8BSuw4gY1vu8AfLhyAs2" alt="Mikami Yua"><span>Mikami Yua</span></div>
+                <div class="category-item" onclick="filterCategory('Nosaka Hiyori')"><img data-src="https://lh3.googleusercontent.com/d/16URYYdIkjrGK83XQFETUjI7jaxlGNnqI" alt="Nosaka Hiyori"><span>Nosaka Hiyori</span></div>
+                <div class="category-item" onclick="filterCategory('Sakura Yuno')"><img data-src="https://lh3.googleusercontent.com/d/169V-bMKFCeEmnPrYXknoKrvchB5uJxUI" alt="Sakura Yuno"><span>Sakura Yuno</span></div>
+                <div class="category-item" onclick="filterCategory('Tokita Ami')"><img data-src="https://lh3.googleusercontent.com/d/16iFaPaDm2uF7ncZvVMjuZikb4T8smWWH" alt="Tokita Ami"><span>Tokita Ami</span></div>
+                <div class="category-item" onclick="filterCategory('Azusa Hikari')"><img data-src="https://lh3.googleusercontent.com/d/17Q5wRlvT0VEHF2iAFWLTHmaWcCLXVoeQ" alt="Azusa Hikari"><span>Azusa Hikari</span></div>
+                <div class="category-item" onclick="filterCategory('Mochizuki Tsubomi')"><img data-src="https://lh3.googleusercontent.com/d/16o77GrSsKd335_lEj-jM4v6olq_sPJi3" alt="Mochizuki Tsubomi"><span>Mochizuki Tsubomi</span></div>
+                <div class="category-item" onclick="filterCategory('Mori Ayami')"><img data-src="https://lh3.googleusercontent.com/d/17XfF4AxcIjxn54zC189Z4SrQFUhCIUmg" alt="Mori Ayami"><span>Mori Ayami</span></div>
+                <div class="category-item" onclick="filterCategory('Suzunoya Rin')"><img data-src="https://lh3.googleusercontent.com/d/16l3devfyiGiiW0Pt4ftBCBFLqNIhb7M3" alt="Suzunoya Rin"><span>Suzunoya Rin</span></div>
             </div>
         </div>
     </div>
