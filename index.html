@@ -1,390 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Gallery</title>
-    <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f5f5f5; color: #222; margin: 0; padding: 20px; text-align: center; }
-        h1 { font-size: 2em; margin-bottom: 20px; }
-        .search-bar, .category-btn, .refresh-btn {padding: 12px; font-size: 16px; margin: 5px; border: none; border-radius: 25px; outline: none;}
-        .search-bar { width: 90%; }
-        .category-btn { width: 60%; }
-        .refresh-btn { width: 31%; margin-bottom: 20px; }
-        .category-btn, .refresh-btn { background:  #2bb54b; color: white; cursor: pointer; }
-        .refresh-btn:hover, .page-btn:hover { background: #218838; }
-        .gallery { display: flex; flex-direction: column; align-items: center; gap: 15px; padding: 10px; }
-        .video { background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 100%; max-width: 450px; text-align: left; display: none; flex-direction: column; cursor: pointer; margin-bottom: 0px; }
-        .video img { width: 100%; height: auto; border-radius: 8px; cursor: pointer; }
-        .video-title { font-size: 16px; font-weight: bold; color: #333; margin-top: 8px; padding: 0 10px; }
-        .video {position: relative;}
-        .preview-btn { position: absolute; right: 5px; bottom: 5px; padding: 5px 5px; font-size: 8px; border: none; background: #ff9800; color: white; border-radius: 5px; cursor: pointer; }
-        .preview-btn:hover { background: #e68900; }
-        .preview-window { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; flex-direction: column; overflow-y: auto; }
-        .preview-content { background: white; padding: 5px; border-radius: 10px; text-align: center; max-width: 500px; width: 90%; height: 600px; overflow-y: auto;}
-        .preview-content img { width: 100%; margin-bottom: 0px; border-radius: 8px; }
-        .close-preview { position: absolute; top: 700px; right: 20px; font-size: 24px; color: white; cursor: pointer; }
-        .pagination { margin-top: 15px; }
-        .page-btn { padding: 8px 12px; margin: 5px; border: none; background: #007bff; color: white; border-radius: 20px; cursor: pointer; }
-        .page-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000;}
-        .modal-content { background: white; padding: 0px; border-radius: 10px; text-align: center; max-width: 500px; width: 95%; height: 600px; overflow-y: auto;}
-        .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 15px; }
-        .category-item { cursor: pointer; text-align: center; }
-        .category-item img { width: 160px; height: 240px; border-radius: 10px;border: 1px solid #7d7d7d; }
-        .category-item span { display: block; margin-top: 5px; margin-bottom: 10px; font-weight: bold; }
-        img[data-src] { background: #f5f5f5; }
-        .lazy { opacity: 0; transition: opacity 0.3s; }
-        .lazy.loaded { opacity: 1; }
-        
-    </style>
-    <script>
-        let videos = [];
-        let currentPage = 1;
-        const videosPerPage = 10;
-        const bufferPages = 2; // Number of pages to load before & after current page
-        let currentCategory = ['JAV'];
-        
-        function searchVideos() {
-            const query = document.getElementById('search').value.toLowerCase();
-            currentPage = 1; // Reset to first page on new search
-            showPage(1); // Re-render visible videos
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Viewing Website</title>
+<style>
+  :root {
+    --bg:#f9fafb;
+    --text:#111827;
+    --card-bg:#ffffff;
+    --primary:#2563eb;
+    --primary-hover:#1e40af;
+    --modal-bg:rgba(0,0,0,0.85);
+    --radius:12px;
+  }
+  body.dark {
+    --bg:#0f172a;
+    --text:#e2e8f0;
+    --card-bg:#1e293b;
+    --primary:#3b82f6;
+    --primary-hover:#2563eb;
+    --modal-bg:rgba(0,0,0,0.9);
+  }
+  body {
+    margin:0;
+    font-family:'Segoe UI', Roboto, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:all 0.3s ease;
+  }
 
-        function filterCategory(category) {
-            currentCategories = [category];
-            document.getElementById('categoryBtn').innerText = `Category - ${category}`;
-            currentPage = 1;
-            showPage(1); // Re-render visible videos
-            closeModal();
-        }
-        function shuffleVideos() {
-            let gallery = document.querySelector('.gallery');
-            videos.sort(() => Math.random() - 0.5);
-            gallery.innerHTML = '';
-            videos.forEach(video => gallery.appendChild(video));
-        }
+  /* Header */
+  header {
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; gap:10px;
+    padding:12px 16px;
+    background:var(--card-bg);
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  }
+  #searchBar {
+    flex:1;
+    padding:10px 14px;
+    border:1px solid #d1d5db;
+    border-radius:var(--radius);
+    font-size:15px;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .header-actions { display:flex; gap:10px; align-items:center; }
+  .icon-btn {
+    background:var(--primary);
+    border:none;
+    border-radius:var(--radius);
+    cursor:pointer;
+    padding:8px 10px;
+    display:flex; align-items:center; justify-content:center;
+    transition:all 0.25s;
+  }
+  .icon-btn:hover { background:var(--primary-hover); }
+  .icon-btn svg { width:20px; height:20px; stroke:#fff; }
 
-        function shuffleCategories() {
-            let grid = document.querySelector('.category-grid');
-            let categories = Array.from(grid.children);
-            categories.sort(() => Math.random() - 0.5);
-            grid.innerHTML = '';
-            categories.forEach(category => grid.appendChild(category));
-        }
-        
+  /* Theme toggle */
+  .theme-toggle {
+    width:48px; height:24px;
+    background:#d1d5db;
+    border-radius:999px;
+    position:relative;
+    cursor:pointer;
+    transition:all 0.3s;
+  }
+  .theme-toggle::after {
+    content:"";
+    width:20px; height:20px;
+    background:#fff;
+    border-radius:50%;
+    position:absolute; top:2px; left:2px;
+    transition:all 0.3s;
+  }
+  body.dark .theme-toggle { background:#3b82f6; }
+  body.dark .theme-toggle::after { transform:translateX(24px); }
 
-       function searchCategories() {
-            const query = document.getElementById('categorySearch').value.toLowerCase();
-            const items = document.querySelectorAll('.category-item');
-            items.forEach(item => {
-                const categoryName = item.querySelector('span').innerText.toLowerCase();
-                item.style.display = categoryName.includes(query) ? 'block' : 'none';
-            });
-        }
-        
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-        
+  /* Filter buttons */
+  .filter-buttons {
+    display:flex; flex-wrap:wrap;
+    gap:10px; padding:12px 16px;
+    justify-content:center;
+  }
+  .filter-buttons button {
+    display:flex; align-items:center; gap:6px;
+    padding:8px 14px;
+    border:none; border-radius:var(--radius);
+    background:var(--primary); color:#fff;
+    font-size:14px; cursor:pointer;
+    transition:all 0.25s;
+  }
+  .filter-buttons button:hover { background:var(--primary-hover); }
+  .filter-buttons button svg { width:16px; height:16px; stroke:#fff; }
 
-function showPage(page) {
-    currentPage = page;
-    scrollToTop();
-
-    // Filter videos by category
-    let filteredVideos = videoData.filter(video => {
-        let videoCategories = video.category.split(',');
-        return currentCategories.includes('all') || 
-               videoCategories.some(cat => currentCategories.includes(cat.trim()));
-    });
-
-    // Clear existing videos (free up DOM)
-    gallery.innerHTML = '';
-
-    // Calculate which videos to render
-    const startIdx = Math.max(0, (page - 1 - bufferPages) * videosPerPage);
-    const endIdx = Math.min(filteredVideos.length, (page + bufferPages) * videosPerPage);
-
-    // Only create DOM elements for videos in the buffer range
-    for (let i = startIdx; i < endIdx; i++) {
-        const video = filteredVideos[i];
-        const isVisible = i >= (page - 1) * videosPerPage && i < page * videosPerPage;
-
-        const videoElement = createVideoElement(video, isVisible);
-        gallery.appendChild(videoElement);
+  /* Video grid */
+  .video-grid {
+    display:grid; gap:16px; padding:16px;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:600px){
+    .video-grid {
+      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+      max-width:1400px; margin:auto;
     }
+  }
+  @media(min-width:1200px){
+    .video-grid { grid-template-columns:repeat(4,1fr); }
+  }
+  .video-card {
+    background:var(--card-bg);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 4px 8px rgba(0,0,0,0.08);
+    cursor:pointer;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .video-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.15); }
+  .video-card img { width:100%; aspect-ratio:3/2; object-fit:cover; }
+  .video-card b { display:block; padding:10px; font-size:15px; text-align:center; }
 
-    // Update pagination buttons
-    document.getElementById('prevPage').disabled = page === 1;
-    document.getElementById('nextPage').disabled = (page * videosPerPage) >= filteredVideos.length;
-}
+  /* Pagination */
+  .pagination {
+    display:flex; justify-content:center; flex-wrap:wrap;
+    gap:6px; padding:16px;
+  }
+  .pagination button {
+    padding:6px 12px;
+    border:1px solid #cbd5e1;
+    background:var(--card-bg);
+    border-radius:6px;
+    cursor:pointer;
+    color:var(--text);
+    font-size:14px;
+    transition:all 0.25s;
+  }
+  .pagination button.active {
+    background:var(--primary);
+    color:#fff;
+    border:none;
+  }
 
-// Helper function to create a single video element
-function createVideoElement(video, isVisible) {
-    const container = document.createElement('div');
-    container.className = 'video';
-    container.dataset.category = video.category;
-    container.dataset.tags = video.tags;
-    container.dataset.title = video.title;
-    container.style.display = isVisible ? 'flex' : 'none';
+  /* Modal */
+  .modal {
+    display:none;
+    position:fixed; top:0; left:0;
+    width:100%; height:100%;
+    z-index:1000;
+    background:var(--modal-bg);
+    justify-content:center; align-items:flex-start;
+    overflow-y:auto; padding:20px;
+  }
+  .modal-content {
+    background:var(--card-bg);
+    width:95%; max-width:900px;
+    margin:40px auto;
+    border-radius:var(--radius);
+    overflow:hidden;
+    min-height:70vh;
+    color:var(--text);
+    position:relative;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+    animation:fadeIn 0.3s ease;
+  }
+  .close {
+    position:fixed; top:14px; right:20px;
+    font-size:34px; color:#fff;
+    cursor:pointer; z-index:2000;
+  }
+  .player { width:100%; aspect-ratio:16/9; background:#000; display:block; }
+  .video-title { font-size:18px; font-weight:600; margin:10px 0 0 0; padding:0 16px; }
+  .details { padding:16px; line-height:1.6; }
+  .details p span {
+    display:inline-block; margin:3px 4px;
+    padding:5px 10px;
+    background:#e5e7eb;
+    border-radius:8px;
+    font-size:13px;
+    cursor:pointer;
+  }
+  body.dark .details p span { background:#334155; }
+  .gallery img { width:100%; margin:12px 0; border-radius:8px; }
 
-    const img = document.createElement('img');
-    img.loading = 'lazy';
-    img.alt = video.title;
-    img.onclick = () => window.location.href = video.url;
+  /* Filter modal */
+  .filter-modal-content {
+    background:var(--card-bg);
+    width:95%; max-width:600px;
+    margin:40px auto;
+    border-radius:var(--radius);
+    padding:18px;
+    min-height:60vh;
+    color:var(--text);
+  }
+  .filter-search { margin-bottom:12px; }
+  .filter-search input {
+    width:100%;
+    padding:10px;
+    border:1px solid #d1d5db;
+    border-radius:var(--radius);
+    background:var(--bg);
+    color:var(--text);
+  }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .grid-3 div { text-align:center; cursor:pointer; transition:transform 0.2s; }
+  .grid-3 div:hover { transform:scale(1.05); }
+  .grid-3 img { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:8px; }
+  .grid-3 .name { display:block; font-weight:600; margin-top:6px; font-size:14px; }
+  .grid-3 .count { display:block; font-size:13px; color:#6b7280; }
+  body.dark .grid-3 .count { color:#94a3b8; }
 
-    // Only load the image if it's visible or near viewport
-    if (isVisible) {
-        img.src = video.thumbnail; // Load immediately
-    } else {
-        img.dataset.src = video.thumbnail; // Will load when scrolled into view
-        lazyImageObserver.observe(img); // Track with IntersectionObserver
-    }
-
-    const title = document.createElement('span');
-    title.className = 'video-title';
-    title.textContent = video.title;
-
-    const previewBtn = document.createElement('button');
-    previewBtn.className = 'preview-btn';
-    previewBtn.textContent = 'Preview';
-    previewBtn.onclick = () => openPreview(video.previewImages);
-
-    container.appendChild(img);
-    container.appendChild(title);
-    container.appendChild(previewBtn);
-
-    return container;
-}
-   
-        function openModal() {
-            const modal = document.getElementById('categoryModal');
-            const grid = modal.querySelector('.category-grid');
-            const items = Array.from(grid.children);
-
-            const fixedCount = 6; // Adjust this number for how many categories you want fixed at the top
-            const fixedItems = items.slice(0, fixedCount);
-            const shuffleItems = items.slice(fixedCount);
-
-            shuffleItems.sort(() => Math.random() - 0.5);
-
-            grid.innerHTML = '';
-            fixedItems.forEach(item => grid.appendChild(item));
-            shuffleItems.forEach(item => grid.appendChild(item));
-
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() { document.getElementById('categoryModal').style.display = 'none'; }
-        
-        function initializeGallery() {
-           videos = Array.from(document.querySelectorAll('.video'));
-           currentCategories = ['JAV']; // Ensure 'all' is set by default
-           document.getElementById('categoryBtn').innerText = 'Category - JAV';
-    
-           videos.forEach(video => video.style.display = 'flex'); // Show all videos initially
-
-           shuffleVideos(); // Shuffle only if needed
-           showPage(1); // Display first page with all videos
-        }
-        
-        window.onclick = function(event) { if (event.target === document.getElementById('categoryModal')) closeModal(); }
-        window.onkeydown = function(event) { if (event.key === "Escape") closeModal(); }
-        window.onload = initializeGallery;
-        
-    </script>
+  @keyframes fadeIn {
+    from {opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
+  }
+</style>
 </head>
 <body>
-    <h1>Video Gallery</h1>
-    <input type="text" id="search" class="search-bar" placeholder="Search videos..." onkeyup="searchVideos()">
-    <button id="categoryBtn" class="category-btn" onclick="openModal()">Category - All</button>
-    <div id="categoryModal" class="modal">
-        <div class="modal-content">
-             <div class="modal-header" style="position: sticky; top: 0; background-color: white; z-index: 100;padding-top: 20px;">
-               <h2 style="margin: 0;">Select a Category</h2>
-               <input type="text" id="categorySearch" class="search-bar" placeholder="Search categories..." onkeyup="searchCategories()" style="border: 1px solid #ccc; padding: 10px; border-radius: 25px; width: 90%; margin-top: 10px;">
-             </div>
-            <div class="category-grid">
-                <div class="category-item" onclick="filterCategory('Asian')"><img data-src="https://lh3.googleusercontent.com/d/1-q7Gh1RF-sYURxDXtXoETJWz5mWRykPQ=s0" alt="Asian"><span>Asian</span></div>
-                <div class="category-item" onclick="filterCategory('JAV')"><img data-src="https://lh3.googleusercontent.com/d/1-Rz8Dyr82oA7Q6Y0V4-r_BmFZ-4ctXp0=s0"  alt="JAV"><span>JAV</span></div>
-                <div class="category-item" onclick="filterCategory('Regular')"><img data-src="https://lh3.googleusercontent.com/d/1-wGK-TJkdjm1txLvFnSI7NH30u6E1S21=s0"  alt="Regular"><span>Regular</span></div>
-                <div class="category-item" onclick="filterCategory('Movies')"><img data-src="https://lh3.googleusercontent.com/d/1-Q4r0JOIKUVPHcwFi4vcYTde59dBmz5A=s0"  alt="Movies"><span>Movies</span></div>
-                <div class="category-item" onclick="filterCategory('PhotoGallery')"><img data-src="https://lh3.googleusercontent.com/d/11N90VFL7M_rDf9u9_Wz8nQ4gta7yxmF7=s0"  alt="PhotoGallery"><span>Photo Gallery</span></div>
-                <div class="category-item" onclick="filterCategory('Desi')"><img data-src="https://lh3.googleusercontent.com/d/1-wErMYiW9mOia5zhaEuMyx4gsaRQLvgl=s0"  alt="Desi"><span>Desi</span></div>              
-                
 
-                <div class="category-item" onclick="filterCategory('Arata Arina')"><img data-src="https://lh3.googleusercontent.com/d/15YTRCB6Rrgiv5uQMi6y9fY7YTPmOusJW"  alt="Arata Arina"><span>Arata Arina</span></div>
-                <div class="category-item" onclick="filterCategory('Asano Kokoro')"><img data-src="https://lh3.googleusercontent.com/d/13TKLdkbxAkuw6a05esoPjV7G3FxqS_n8"  alt="Asano Kokoro"><span>Asano Kokoro</span></div>
-                <div class="category-item" onclick="filterCategory('Hayasaka Hime')"><img data-src="https://lh3.googleusercontent.com/d/15QTFVxxBxBG340akHDdo4mxbTyi9zAFz"  alt="Hayasaka Hime"><span>Hayasaka Hime</span></div>
-                <div class="category-item" onclick="filterCategory('Honjou Suzu')"><img data-src="https://lh3.googleusercontent.com/d/15CNd9Xf_5WoEU79_h6XoA2R6EUZfnlcM"  alt="Honjou Suzu"><span>Honjou Suzu</span></div>
-                <div class="category-item" onclick="filterCategory('Ishada Karen')"><img data-src="https://lh3.googleusercontent.com/d/15Cbnt0nEj-B5xLIrjm4_1qGJlfrzRrh9"  alt="Ishada Karen"><span>Ishada Karen</span></div>
-                <div class="category-item" onclick="filterCategory('Itsukaichi Mei')"><img data-src="https://lh3.googleusercontent.com/d/1590aJAgYvZTQXafRLFQM8nPjBhXjFV3j" alt="Itsukaichi Mei"><span>Itsukaichi Mei</span></div>
-                <div class="category-item" onclick="filterCategory('Minamo')"><img data-src="https://lh3.googleusercontent.com/d/13F5qz6Dg9EUA9_KI1nAeRsQ5fNK-nCFB" alt="Minamo"><span>Minamo</span></div>
-                <div class="category-item" onclick="filterCategory('Yoshitaka Nene')"><img data-src="https://lh3.googleusercontent.com/d/13dd8yEZuzyx5Yj31yJIdUoefj2kygQeY" alt="Yoshitaka Nene"><span>Yoshitaka Nene</span></div>
-                <div class="category-item" onclick="filterCategory('Yatsugake Umi')"><img data-src="https://lh3.googleusercontent.com/d/13uZgn64wryobSTq7SMQMFyFV2hDA2QI4" alt="Yatsugake Umi"><span>Yatsugake Umi</span></div>
-                <div class="category-item" onclick="filterCategory('Tachibana Mary')"><img data-src="https://lh3.googleusercontent.com/d/15_3vEPu0vITayCg3eJjOMXpUmpTcxpJI" alt="Tachibana Mary"><span>Tachibana Mary</span></div>
-                <div class="category-item" onclick="filterCategory('Shitara Yuuhi')"><img data-src="https://lh3.googleusercontent.com/d/13gQzdwUUMPDqsUjzSx9jaDoKaFw0_6-K" alt="Shitara Yuuhi"><span>Shitara Yuuhi</span></div>
-                <div class="category-item" onclick="filterCategory('Kaede Karen')"><img data-src="https://lh3.googleusercontent.com/d/151tX4Xuuls3qzuZRgE7egZ5-Yc90o4oW" alt="Kaede Karen"><span>Kaede Karen</span></div>
-                <div class="category-item" onclick="filterCategory('Miyajima Mei')"><img data-src="https://lh3.googleusercontent.com/d/14sQWLO4bcmDn-AlimVujYE2BKgoJbs4g" alt="Miyajima Mei"><span>Miyajima Mei</span></div>
-                <div class="category-item" onclick="filterCategory('Sakakihara Moe')"><img data-src="https://lh3.googleusercontent.com/d/13l9JhLM-pHwk9FS_PDll00AtdmebwPOL" alt="Sakakihara Moe"><span>Sakakihara Moe</span></div>
-                <div class="category-item" onclick="filterCategory('Kawakita Saika')"><img data-src="https://lh3.googleusercontent.com/d/13NLn5XnZV_KVRR7_EtUm6qbGn8Vqpp4w" alt="Kawakita Saika"><span>Kawakita Saika</span></div>
-                <div class="category-item" onclick="filterCategory('Nanatsumori Riri')"><img data-src="https://lh3.googleusercontent.com/d/13OkczwZyXT01U9-jzV4B6zFTm0AFuiOy" alt="Nanatsumori Riri"><span>Nanatsumori Riri</span></div>
-                <div class="category-item" onclick="filterCategory('Kodama Nanami')"><img data-src="https://lh3.googleusercontent.com/d/154RQeEbyraafSZDD6QKieXY2xELdz5nV" alt="Kodama Nanami"><span>Kodama Nanami</span></div>
-                <div class="category-item" onclick="filterCategory('Miho Nana')"><img data-src="https://lh3.googleusercontent.com/d/157Yh1rZ_okPhbUt7WkCTd6W3PAalWj8N" alt="Miho Nana"><span>Miho Nana</span></div>
-                <div class="category-item" onclick="filterCategory('Miyashita Rena')"><img data-src="https://lh3.googleusercontent.com/d/154t2XiQic1erJ3V9omTC4rjbHFEHfE5h" alt="Miyashita Rena"><span>Miyashita Rena</span></div>
-                <div class="category-item" onclick="filterCategory('Nonoura Non')"><img data-src="https://lh3.googleusercontent.com/d/15WIHB_pa-GfBHKxT4wdERvZzRr-b_UOR" alt="Nonoura Non"><span>Nonoura Non</span></div>
-                <div class="category-item" onclick="filterCategory('Sakura Norino')"><img data-src="https://lh3.googleusercontent.com/d/15Hru0i5O0KFPlD6S6YZ8fdE96i3L4SvP" alt="Sakura Norino"><span>Sakura Norino</span></div>
-                <div class="category-item" onclick="filterCategory('Sakura Momo')"><img data-src="https://lh3.googleusercontent.com/d/160LlM224pxbY_7Kef3ptJmAmcTd29bqY" alt="Sakura Momo"><span>Sakura Momo</span></div>
-                <div class="category-item" onclick="filterCategory('Kasumi Minami')"><img data-src="https://lh3.googleusercontent.com/d/15cGfFaQwTCsoL_7VoSV84Wnk8bubFlrI" alt="Kasumi Minami"><span>Kasumi Minami</span></div>
-                <div class="category-item" onclick="filterCategory('Minami Aizawa')"><img data-src="https://lh3.googleusercontent.com/d/164sA3dmx52D9K8QVOUbS13ex76XupaMI" alt="Minami Aizawa"><span>Minami Aizawa</span></div>
-                <div class="category-item" onclick="filterCategory('Mikami Yua')"><img data-src="https://lh3.googleusercontent.com/d/163Ehim2T7JDp8BSuw4gY1vu8AfLhyAs2" alt="Mikami Yua"><span>Mikami Yua</span></div>
-                <div class="category-item" onclick="filterCategory('Nosaka Hiyori')"><img data-src="https://lh3.googleusercontent.com/d/16URYYdIkjrGK83XQFETUjI7jaxlGNnqI" alt="Nosaka Hiyori"><span>Nosaka Hiyori</span></div>
-                <div class="category-item" onclick="filterCategory('Sakura Yuno')"><img data-src="https://lh3.googleusercontent.com/d/169V-bMKFCeEmnPrYXknoKrvchB5uJxUI" alt="Sakura Yuno"><span>Sakura Yuno</span></div>
-                <div class="category-item" onclick="filterCategory('Tokita Ami')"><img data-src="https://lh3.googleusercontent.com/d/16iFaPaDm2uF7ncZvVMjuZikb4T8smWWH" alt="Tokita Ami"><span>Tokita Ami</span></div>
-                <div class="category-item" onclick="filterCategory('Azusa Hikari')"><img data-src="https://lh3.googleusercontent.com/d/17Q5wRlvT0VEHF2iAFWLTHmaWcCLXVoeQ" alt="Azusa Hikari"><span>Azusa Hikari</span></div>
-                <div class="category-item" onclick="filterCategory('Mochizuki Tsubomi')"><img data-src="https://lh3.googleusercontent.com/d/16o77GrSsKd335_lEj-jM4v6olq_sPJi3" alt="Mochizuki Tsubomi"><span>Mochizuki Tsubomi</span></div>
-                <div class="category-item" onclick="filterCategory('Mori Ayami')"><img data-src="https://lh3.googleusercontent.com/d/17XfF4AxcIjxn54zC189Z4SrQFUhCIUmg" alt="Mori Ayami"><span>Mori Ayami</span></div>
-                <div class="category-item" onclick="filterCategory('Suzunoya Rin')"><img data-src="https://lh3.googleusercontent.com/d/16l3devfyiGiiW0Pt4ftBCBFLqNIhb7M3" alt="Suzunoya Rin"><span>Suzunoya Rin</span></div>
-            </div>
-        </div>
-    </div>
-    <button class="refresh-btn" onclick="shuffleVideos()">Shuffle</button>
-    
-   <div class="gallery"></div>
-   
-   <div class="preview-window" id="previewWindow">
-        <span class="close-preview" onclick="closePreview()">×</span>
-        <div class="preview-content" id="previewContent"></div>
-    </div>
+<header>
+  <button class="icon-btn" id="homeBtn" title="Home">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9.5l9-7 9 7V20a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V9.5z"/></svg>
+  </button>
+  <input type="text" id="searchBar" placeholder="Search videos...">
+  <div class="header-actions">
+    <button class="icon-btn" id="shuffleBtn" title="Shuffle Videos">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 3h5v5M4 20l5-5m11-2h-3.5a2.5 2.5 0 0 1-2-4l5-5"/></svg>
+    </button>
+    <div class="theme-toggle" id="themeToggle"></div>
+  </div>
+</header>
 
+<div class="filter-buttons">
+  <button onclick="openFilter('actress')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    Actress
+  </button>
+  <button onclick="openFilter('studio')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16v16H4z"/></svg>
+    Studio
+  </button>
+  <button onclick="openFilter('label')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 17l9-4 9 4"/><path d="M3 12l9-4 9 4"/></svg>
+    Label
+  </button>
+  <button onclick="openFilter('series')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z"/></svg>
+    Series
+  </button>
+  <button onclick="openFilter('tags')">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 7h10v10H7z"/></svg>
+    Tags
+  </button>
+  <button class="icon-btn" id="randomBtn" title="Random Video">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
+  </button>
+</div>
 
+<div class="video-grid" id="videoGrid"></div>
+<div class="pagination" id="pagination"></div>
+
+<!-- Video Modal -->
+<div class="modal" id="videoModal">
+  <span class="close" onclick="closeModal('videoModal')">&times;</span>
+  <div class="modal-content">
+    <iframe id="videoPlayer" class="player" src="" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <div id="videoTitle" class="video-title"></div>
+    <div class="details" id="videoDetails"></div>
+    <div class="gallery" id="videoGallery"></div>
+  </div>
+</div>
+
+<!-- Filter Modal -->
+<div class="modal" id="filterModal">
+  <span class="close" onclick="closeModal('filterModal')">&times;</span>
+  <div class="filter-modal-content" id="filterContent">
+    <h3 id="filterTitle"></h3>
+    <div class="filter-search"><input type="text" id="filterSearch" placeholder="Search..."></div>
+    <div id="filterBody"></div>
+  </div>
+</div>
+
+<script src="filters.js"></script>
+<script src="videos.js"></script>
 <script>
-    let videoData = [
-        { //1
-            url: 'https://drive.google.com/file/d/1-PeRTQBcZ1eJKK6x7Jnj-ltXJjRo747W/view?usp=sharing',
-            title: '[START-265] Time Stop REC – The Full Story of a Popular Influencer Taken by a Homeless Creepy Old Man – MINAMO', 
-            category: 'JAV,Minamo', 
-            tags: 'minamo', 
-            thumbnail: 'https://cdn.javsts.com/wp-content/uploads/2025/04/1start265pl.jpg',
-            previewImages: ['https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-1.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-2.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-3.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-4.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-5.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-6.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-7.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-8.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-9.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-10.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-11.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-12.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-13.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-14.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-15.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-16.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-17.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-18.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-19.jpg',
-                           'https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-20.jpg',]
-        }
-    ];
+// same JS logic from before (unchanged)
+function toArray(val){ if(!val) return []; if(Array.isArray(val)) return val.map(v=>v.trim()); return val.split(",").map(v=>v.trim()).filter(Boolean); }
+function shuffleArray(arr){ return arr.sort(()=>Math.random()-0.5); }
 
-    let gallery = document.querySelector('.gallery');
+const perPage=12; let currentPage=1; let activeFilters={}; let filtered=shuffleArray([...videos]);
 
-    // Generate Video Thumbnails
-    videoData.forEach(video => {
-        let container = document.createElement('div');
-        container.className = 'video';
-        container.dataset.category = video.category;
-        container.dataset.tags = video.tags;
-        container.dataset.title = video.title;
-        
-        let img = document.createElement('img');
-        img.dataset.src = video.thumbnail;
-        img.loading = 'lazy';
-        img.alt = video.title;
-        img.onclick = () => window.location.href = video.url;
-        
-        let title = document.createElement('span');
-        title.className = 'video-title';
-        title.textContent = video.title;
-        
-        let previewBtn = document.createElement('button');
-                previewBtn.className = 'preview-btn';
-                previewBtn.textContent = 'Preview';
-                previewBtn.onclick = () => openPreview(video.previewImages);
-        
-        container.appendChild(img);
-        container.appendChild(title);
-        container.appendChild(previewBtn);
-        gallery.appendChild(container);
-    });
-    
-    // Lazy load images using Intersection Observer
-document.addEventListener('DOMContentLoaded', function() {
-    const lazyImages = [].slice.call(document.querySelectorAll('img[data-src]'));
-    
-    if ('IntersectionObserver' in window) {
-        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    let lazyImage = entry.target;
-                    lazyImage.src = lazyImage.dataset.src;
-                    lazyImageObserver.unobserve(lazyImage);
-                }
-            });
-        });
+function applyAllFilters(){ filtered=videos.filter(v=>{ return Object.entries(activeFilters).every(([k,vals])=>!vals.length||vals.some(val=>toArray(v[k]).includes(val))); }); filtered=shuffleArray(filtered); currentPage=1; renderVideos(); }
+function renderVideos(){ const grid=document.getElementById("videoGrid"); grid.innerHTML=""; const start=(currentPage-1)*perPage; const pageItems=filtered.slice(start,start+perPage); pageItems.forEach(v=>{ const card=document.createElement("div"); card.className="video-card"; card.innerHTML=`<img src="${v.thumbnail}" loading="lazy"><b>${v.title}</b>`; card.onclick=()=>openVideo(v); grid.appendChild(card); }); renderPagination(); window.scrollTo({top:0,behavior:"smooth"}); }
+function renderPagination(){ const totalPages=Math.ceil(filtered.length/perPage); const pag=document.getElementById("pagination"); pag.innerHTML=""; for(let i=1;i<=totalPages;i++){ const btn=document.createElement("button"); btn.textContent=i; if(i===currentPage) btn.classList.add("active"); btn.onclick=()=>{currentPage=i; renderVideos();}; pag.appendChild(btn);} }
 
-        lazyImages.forEach(function(lazyImage) {
-            lazyImageObserver.observe(lazyImage);
-        });
-    } else {
-        // Fallback for browsers without IntersectionObserver
-        lazyImages.forEach(function(lazyImage) {
-            lazyImage.src = lazyImage.dataset.src;
-        });
-    }
-});
+document.getElementById("searchBar").addEventListener("input",e=>{ const q=e.target.value.toLowerCase(); activeFilters={}; filtered=shuffleArray(videos.filter(v=> v.title.toLowerCase().includes(q) || v.code.toLowerCase().includes(q) || toArray(v.actress).some(a=>a.toLowerCase().includes(q)) || toArray(v.studio).some(s=>s.toLowerCase().includes(q)) || toArray(v.label).some(l=>l.toLowerCase().includes(q)) || toArray(v.series).some(s=>s.toLowerCase().includes(q)) || toArray(v.tags).some(t=>t.toLowerCase().includes(q)) )); currentPage=1; renderVideos(); });
 
-let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-            let lazyImage = entry.target;
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.classList.add('loaded');
-            lazyImageObserver.unobserve(lazyImage);
-        }
-    });
-}, {
-    rootMargin: '200px 0px' // Load images 200px before they come into view
-});
+function openVideo(v){ document.getElementById("videoTitle").textContent=v.title; document.getElementById("videoPlayer").src=v.videoUrl; const details=`<p><b>Code:</b> <span onclick="setFilter('code','${v.code}')">${v.code}</span></p><p><b>Actress:</b> ${toArray(v.actress).map(a=>`<span onclick="setFilter('actress','${a}')">${a}</span>`).join(" ")}</p><p><b>Studio:</b> ${toArray(v.studio).map(s=>`<span onclick="setFilter('studio','${s}')">${s}</span>`).join(" ")}</p><p><b>Label:</b> ${toArray(v.label).map(l=>`<span onclick="setFilter('label','${l}')">${l}</span>`).join(" ")}</p><p><b>Series:</b> ${toArray(v.series).map(s=>`<span onclick="setFilter('series','${s}')">${s}</span>`).join(" ")}</p><p><b>Tags:</b> ${toArray(v.tags).map(t=>`<span onclick="setFilter('tags','${t}')">${t}</span>`).join(" ")}</p><p>${v.description}</p>`; document.getElementById("videoDetails").innerHTML=details; const gallery=document.getElementById("videoGallery"); gallery.innerHTML=""; v.gallery.forEach(img=>{ const el=document.createElement("img"); el.src=img; el.loading="lazy"; gallery.appendChild(el); }); document.getElementById("videoModal").style.display="flex"; }
+function closeModal(id){ document.getElementById(id).style.display="none"; if(id==="videoModal") document.getElementById("videoPlayer").src=""; }
 
-    function openPreview(images) {
-            let previewContent = document.getElementById('previewContent');
-            previewContent.innerHTML = '';
-            images.forEach(src => {
-                let img = document.createElement('img');
-                img.loading = 'lazy';
-                img.src = src;
-                previewContent.appendChild(img);
-            });
-            document.getElementById('previewWindow').style.display = 'flex';
-        }
+function openFilter(type){ const modal=document.getElementById("filterModal"); const body=document.getElementById("filterBody"); const title=document.getElementById("filterTitle"); body.innerHTML=""; title.textContent="Choose "+type; let items; if(type==="tags"){ items=shuffleArray([...new Set(videos.flatMap(v=>toArray(v.tags)))]);} else { items=shuffleArray([...new Set(videos.flatMap(v=>toArray(v[type])))]);} const container=document.createElement("div"); container.className="grid-3"; items.forEach(it=>{ const count=videos.filter(v=>toArray(v[type]).includes(it)).length; const imgLink=(type==="tags"?filters.tags?.[it]:filters[type]?.[it])||"https://via.placeholder.com/200x300.png?text="+encodeURIComponent(it); const div=document.createElement("div"); div.innerHTML=`<img src="${imgLink}" loading="lazy"><span class="name">${it}</span><span class="count">${count} videos</span>`; div.onclick=()=>setFilter(type,it); container.appendChild(div); }); body.appendChild(container); const searchInput=document.getElementById("filterSearch"); searchInput.value=""; searchInput.oninput=()=>{ const q=searchInput.value.toLowerCase(); [...container.children].forEach(child=>{ const name=child.querySelector(".name").textContent.toLowerCase(); child.style.display=name.includes(q)?"block":"none"; }); }; modal.style.display="flex"; }
+function setFilter(type,val){ if(!activeFilters[type]) activeFilters[type]=[]; if(!activeFilters[type].includes(val)) activeFilters[type].push(val); applyAllFilters(); closeModal("filterModal"); closeModal("videoModal"); }
 
-        function closePreview() {
-    const previewWindow = document.getElementById('previewWindow');
-    const previewContent = document.getElementById('previewContent');
+document.getElementById("shuffleBtn").addEventListener("click",()=>{ filtered=shuffleArray([...filtered]); currentPage=1; renderVideos(); });
+document.getElementById("randomBtn").addEventListener("click",()=>{ const all=filtered.length?filtered:videos; const v=all[Math.floor(Math.random()*all.length)]; openVideo(v); });
+document.getElementById("homeBtn").addEventListener("click",()=>{ activeFilters={}; filtered=shuffleArray([...videos]); currentPage=1; renderVideos(); });
 
-    previewContent.innerHTML = '';
-    previewContent.scrollTop = 0;
-    previewWindow.style.display = 'none';
-}
+const themeToggle=document.getElementById("themeToggle"); themeToggle.addEventListener("click",()=>{ document.body.classList.toggle("dark"); localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light"); }); if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark"); }
+
+renderVideos();
 </script>
-
-    <div class="pagination">
-        <button class="page-btn" id="prevPage" onclick="showPage(currentPage - 1)">Previous</button>
-        <button class="page-btn" id="nextPage" onclick="showPage(currentPage + 1)">Next</button>
-    </div>
 </body>
 </html>
