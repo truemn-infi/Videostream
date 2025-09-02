@@ -11,7 +11,7 @@ const videos = [
     tags:["Big tits", "Drama", "Solowork", "Time Stop", "Various Professions"],
     description:"A homeless man discovers a time-stop device and now he wants to revenge on society. He begins to continually target Minamo, a extremely popular and rich influencer, who after the deeds starts to notice semen on her vagina and face, not understanding where it could come from.",
     thumbnail:"https://cdn.javsts.com/wp-content/uploads/2025/04/1start265pl.jpg",
-    videoUrl:"https://javhd.today/embed/257316/",
+    videoUrl:"https://javtiful.com/embed/956b7e39960592bf0e30",
     gallery:[
       "https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-2.jpg",
@@ -104,4 +104,5 @@ const videos = [
     ]
   },
 ];
+
 
