@@ -1,260 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Video Viewing Website</title>
 <style>
-  :root {
+  :root{
     --bg:#f9fafb;
-    --text:#111827;
+    --text:#0f172a;
     --card-bg:#ffffff;
-    --primary:#2563eb;
-    --primary-hover:#1e40af;
+
+    /* Gradients */
+    --primary-start:#6366f1; /* indigo-500 */
+    --primary-end:#22d3ee;   /* cyan-400 */
+    --primary:#4f46e5;       /* solid fallback */
+    --primary-hover:#4338ca;
+
     --modal-bg:rgba(0,0,0,0.85);
     --radius:12px;
+
+    /* Subtle gradient surfaces */
+    --surface-grad: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(246,248,251,0.9));
   }
-  body.dark {
-    --bg:#0f172a;
-    --text:#e2e8f0;
-    --card-bg:#1e293b;
+  body.dark{
+    --bg:#0b1220;
+    --text:#e5e9f0;
+    --card-bg:#131a2a;
+
+    --primary-start:#60a5fa; /* blue-400 */
+    --primary-end:#22d3ee;   /* cyan-400 */
     --primary:#3b82f6;
     --primary-hover:#2563eb;
+
     --modal-bg:rgba(0,0,0,0.9);
+    --surface-grad: linear-gradient(180deg, rgba(29,40,62,0.9), rgba(17,25,40,0.9));
   }
-  body {
+
+  *{ box-sizing:border-box; }
+  body{
     margin:0;
-    font-family:'Segoe UI', Roboto, sans-serif;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
     background:var(--bg);
     color:var(--text);
-    transition:all 0.3s ease;
+    transition: background .3s ease, color .3s ease;
+    overflow-x:hidden; /* prevent mobile overflow */
   }
 
   /* Header */
-  header {
+  header{
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; gap:10px;
-    padding:12px 16px;
+    padding:10px 12px;
     background:var(--card-bg);
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    background-image: var(--surface-grad);
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
   }
-  #searchBar {
+  #searchBar{
     flex:1;
-    padding:10px 14px;
-    border:1px solid #d1d5db;
-    border-radius:var(--radius);
+    padding:10px 12px;
+    border:1px solid rgba(148,163,184,.35);
+    border-radius:10px;
     font-size:15px;
-    background:var(--bg);
+    background:transparent;
     color:var(--text);
+    min-width:0;
   }
-  .header-actions { display:flex; gap:10px; align-items:center; }
-  .icon-btn {
-    background:var(--primary);
+  .header-actions{ display:flex; gap:8px; align-items:center; flex-shrink:0; }
+
+  /* Gradient buttons */
+  .icon-btn{
     border:none;
-    border-radius:var(--radius);
-    cursor:pointer;
+    border-radius:10px;
     padding:8px 10px;
     display:flex; align-items:center; justify-content:center;
-    transition:all 0.25s;
-  }
-  .icon-btn:hover { background:var(--primary-hover); }
-  .icon-btn svg { width:20px; height:20px; stroke:#fff; }
-
-  /* Theme toggle */
-  .theme-toggle {
-    width:48px; height:24px;
-    background:#d1d5db;
-    border-radius:999px;
-    position:relative;
     cursor:pointer;
-    transition:all 0.3s;
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    color:#fff;
+    transition: transform .15s ease, filter .15s ease, box-shadow .2s ease;
+    box-shadow: 0 6px 14px rgba(79,70,229,.25);
   }
-  .theme-toggle::after {
-    content:"";
-    width:20px; height:20px;
-    background:#fff;
-    border-radius:50%;
-    position:absolute; top:2px; left:2px;
-    transition:all 0.3s;
-  }
-  body.dark .theme-toggle { background:#3b82f6; }
-  body.dark .theme-toggle::after { transform:translateX(24px); }
+  .icon-btn:hover{ filter:brightness(0.95); transform: translateY(-1px); }
+  .icon-btn:active{ transform: translateY(0); }
+  .icon-btn svg{ width:20px; height:20px; stroke:#fff; }
 
-  /* Filter buttons */
-  .filter-buttons {
-    display:flex; flex-wrap:wrap;
-    gap:10px; padding:12px 16px;
-    justify-content:center;
+  /* Theme toggle — keep inside view on mobile */
+  .theme-toggle{
+    width:44px; height:24px; flex-shrink:0;
+    background:rgba(148,163,184,.5);
+    border-radius:999px; position:relative; cursor:pointer; transition:.3s;
   }
-  .filter-buttons button {
+  .theme-toggle::after{
+    content:""; position:absolute; top:2px; left:2px;
+    width:20px; height:20px; border-radius:50%;
+    background:#fff; transition:.3s;
+  }
+  body.dark .theme-toggle{
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+  }
+  body.dark .theme-toggle::after{ transform: translateX(20px); }
+
+  /* Filter buttons bar */
+  .filter-buttons{
+    display:flex; flex-wrap:wrap; gap:8px;
+    padding:10px 12px; justify-content:center;
+  }
+  .filter-buttons button{
     display:flex; align-items:center; gap:6px;
-    padding:8px 14px;
-    border:none; border-radius:var(--radius);
-    background:var(--primary); color:#fff;
-    font-size:14px; cursor:pointer;
-    transition:all 0.25s;
+    padding:8px 12px;
+    border:none; border-radius:10px;
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    color:#fff; font-size:14px; cursor:pointer;
+    transition: filter .15s ease, transform .15s ease;
+    box-shadow: 0 6px 14px rgba(34,211,238,.2);
   }
-  .filter-buttons button:hover { background:var(--primary-hover); }
-  .filter-buttons button svg { width:16px; height:16px; stroke:#fff; }
+  .filter-buttons button:hover{ filter:brightness(0.96); transform: translateY(-1px); }
+  .filter-buttons button svg{ width:16px; height:16px; stroke:#fff; }
 
-  /* Video grid */
-  .video-grid {
-    display:grid; gap:16px; padding:16px;
+  /* Grid */
+  .video-grid{
+    display:grid; gap:10px; padding:8px; /* tighter for mobile */
     grid-template-columns:1fr;
+    max-width:100%;
   }
   @media(min-width:600px){
-    .video-grid {
-      grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-      max-width:1400px; margin:auto;
-    }
+    .video-grid{ grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); max-width:1400px; margin:0 auto; }
   }
   @media(min-width:1200px){
-    .video-grid { grid-template-columns:repeat(4,1fr); }
+    .video-grid{ grid-template-columns:repeat(4,1fr); }
   }
-  .video-card {
+  .video-card{
     background:var(--card-bg);
-    border-radius:var(--radius);
-    overflow:hidden;
-    box-shadow:0 4px 8px rgba(0,0,0,0.08);
-    cursor:pointer;
-    transition:transform 0.2s, box-shadow 0.2s;
+    background-image: var(--surface-grad);
+    border-radius:12px; overflow:hidden;
+    box-shadow:0 6px 14px rgba(0,0,0,.08);
+    cursor:pointer; transition: transform .18s ease, box-shadow .18s ease;
   }
-  .video-card:hover { transform:translateY(-4px); box-shadow:0 6px 12px rgba(0,0,0,0.15); }
-  .video-card img { width:100%; aspect-ratio:3/2; object-fit:cover; }
-  .video-card b { display:block; padding:10px; font-size:15px; text-align:center; }
+  .video-card:hover{ transform: translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,.14); }
+  /* Equal, small side margins around image (mobile-perfect) */
+  .video-card img{
+    width:calc(100% - 10px);
+    margin:5px;                /* small equal margin both sides */
+    aspect-ratio:3/2;
+    object-fit:cover;
+    border-radius:8px;
+    display:block;
+  }
+  .video-card b{
+    display:block; padding:6px 8px; font-size:15px; text-align:center;
+  }
 
   /* Pagination */
-  .pagination {
-    display:flex; justify-content:center; flex-wrap:wrap;
-    gap:6px; padding:16px;
+  .pagination{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:6px;
+    padding:12px;
   }
-  .pagination button {
-    padding:6px 12px;
-    border:1px solid #cbd5e1;
-    background:var(--card-bg);
-    border-radius:6px;
-    cursor:pointer;
-    color:var(--text);
-    font-size:14px;
-    transition:all 0.25s;
-  }
-  .pagination button.active {
-    background:var(--primary);
-    color:#fff;
+  .pagination button{
+    padding:6px 10px; min-width:36px;
     border:none;
+    border-radius:8px;
+    background:var(--card-bg);
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+    color:var(--text); cursor:pointer; font-size:14px;
+  }
+  .pagination button.active{
+    background: linear-gradient(135deg, var(--primary-start), var(--primary-end));
+    color:#fff;
   }
 
   /* Modal */
-  .modal {
-    display:none;
-    position:fixed; top:0; left:0;
-    width:100%; height:100%;
-    z-index:1000;
+  .modal{
+    display:none; position:fixed; inset:0; z-index:1000;
     background:var(--modal-bg);
     justify-content:center; align-items:flex-start;
-    overflow-y:auto; padding:20px;
+    overflow-y:auto; padding:16px;
   }
-  .modal-content {
+  .modal-content{
     background:var(--card-bg);
-    width:95%; max-width:900px;
-    margin:40px auto;
-    border-radius:var(--radius);
-    overflow:hidden;
-    min-height:70vh;
-    color:var(--text);
-    position:relative;
-    box-shadow:0 6px 18px rgba(0,0,0,0.25);
-    animation:fadeIn 0.3s ease;
+    background-image: var(--surface-grad);
+    width:96%; max-width:900px; margin:36px auto;
+    border-radius:14px; overflow:hidden; min-height:65vh; color:var(--text);
+    box-shadow:0 12px 30px rgba(0,0,0,.35); animation:fadeIn .25s ease;
   }
-  .close {
-    position:fixed; top:14px; right:20px;
-    font-size:34px; color:#fff;
-    cursor:pointer; z-index:2000;
+  .close{
+    position:fixed; top:10px; right:16px; font-size:32px; color:#fff; cursor:pointer; z-index:2000;
   }
-  .player { width:100%; aspect-ratio:16/9; background:#000; display:block; }
-  .video-title { font-size:18px; font-weight:600; margin:10px 0 0 0; padding:0 16px; }
-  .details { padding:16px; line-height:1.6; }
-  .details p span {
-    display:inline-block; margin:3px 4px;
-    padding:5px 10px;
-    background:#e5e7eb;
-    border-radius:8px;
-    font-size:13px;
-    cursor:pointer;
+  .player{ width:100%; aspect-ratio:16/9; background:#000; display:block; }
+  .video-title{ font-size:18px; font-weight:600; margin:10px 0 0; padding:0 14px; }
+  .details{ padding:12px; line-height:1.55; }
+  .details p span{
+    display:inline-block; margin:3px 4px; padding:5px 10px;
+    background:rgba(148,163,184,.18);
+    border-radius:10px; font-size:13px; cursor:pointer;
   }
-  body.dark .details p span { background:#334155; }
-  .gallery img { width:100%; margin:12px 0; border-radius:8px; }
+  body.dark .details p span{ background:rgba(148,163,184,.25); }
+  .gallery img{ width:100%; margin:10px 0; border-radius:8px; }
 
   /* Filter modal */
-  .filter-modal-content {
+  .filter-modal-content{
     background:var(--card-bg);
-    width:95%; max-width:600px;
-    margin:40px auto;
-    border-radius:var(--radius);
-    padding:18px;
-    min-height:60vh;
-    color:var(--text);
+    background-image: var(--surface-grad);
+    width:96%; max-width:600px; margin:36px auto;
+    border-radius:14px; padding:14px; min-height:55vh; color:var(--text);
   }
-  .filter-search { margin-bottom:12px; }
-  .filter-search input {
-    width:100%;
-    padding:10px;
-    border:1px solid #d1d5db;
-    border-radius:var(--radius);
-    background:var(--bg);
-    color:var(--text);
+  .filter-search{ margin-bottom:8px; }
+  .filter-search input{
+    width:100%; /* keep within the modal (no overflow) */
+    padding:8px 10px;
+    border:1px solid rgba(148,163,184,.35);
+    border-radius:10px; background:transparent; color:var(--text);
   }
-  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-  .grid-3 div { text-align:center; cursor:pointer; transition:transform 0.2s; }
-  .grid-3 div:hover { transform:scale(1.05); }
-  .grid-3 img { width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:8px; }
-  .grid-3 .name { display:block; font-weight:600; margin-top:6px; font-size:14px; }
-  .grid-3 .count { display:block; font-size:13px; color:#6b7280; }
-  body.dark .grid-3 .count { color:#94a3b8; }
 
-  @keyframes fadeIn {
-    from {opacity:0; transform:translateY(10px);}
-    to {opacity:1; transform:translateY(0);}
+  /* Tighter side-by-side spacing for options */
+  .grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;               /* tighter than before */
   }
+  .grid-3 .opt{
+    text-align:center; cursor:pointer; transition:transform .15s ease;
+    border:2px solid transparent; border-radius:10px;
+    padding:4px;           /* reduced padding to be tighter */
+    background:var(--card-bg);
+  }
+  .grid-3 .opt:hover{ transform:scale(1.03); }
+  .grid-3 .opt.selected{ border-color: var(--primary-start); }
+  .grid-3 img{
+    width:100%; aspect-ratio:2/3; object-fit:cover; border-radius:8px;
+  }
+  .grid-3 .name{ display:block; font-weight:600; margin-top:6px; font-size:13px; }
+  .grid-3 .count{ display:block; font-size:12px; opacity:.75; }
+
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 </style>
 </head>
 <body>
 
 <header>
   <button class="icon-btn" id="homeBtn" title="Home">
+    <!-- home icon -->
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 9.5l9-7 9 7V20a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V9.5z"/></svg>
   </button>
-  <input type="text" id="searchBar" placeholder="Search videos...">
+  <input type="text" id="searchBar" placeholder="Search videos..." />
   <div class="header-actions">
     <button class="icon-btn" id="shuffleBtn" title="Shuffle Videos">
+      <!-- shuffle icon -->
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M16 3h5v5M4 20l5-5m11-2h-3.5a2.5 2.5 0 0 1-2-4l5-5"/></svg>
     </button>
-    <div class="theme-toggle" id="themeToggle"></div>
+    <div class="theme-toggle" id="themeToggle" title="Toggle theme"></div>
   </div>
 </header>
 
 <div class="filter-buttons">
-  <button onclick="openFilter('actress')">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
-    Actress
-  </button>
-  <button onclick="openFilter('studio')">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 4h16v16H4z"/></svg>
-    Studio
-  </button>
-  <button onclick="openFilter('label')">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 17l9-4 9 4"/><path d="M3 12l9-4 9 4"/></svg>
-    Label
-  </button>
-  <button onclick="openFilter('series')">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h7v7H3V3zm0 11h7v7H3v-7zm11-11h7v7h-7V3zm0 11h7v7h-7v-7z"/></svg>
-    Series
-  </button>
-  <button onclick="openFilter('tags')">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M7 7h10v10H7z"/></svg>
-    Tags
-  </button>
-  <button class="icon-btn" id="randomBtn" title="Random Video">
+  <button id="btn-actress">Actress: All</button>
+  <button id="btn-studio">Studio: All</button>
+  <button id="btn-label">Label: All</button>
+  <button id="btn-series">Series: All</button>
+  <button id="btn-tags">Tags: All</button>
+  <button class="icon-btn" id="randomBtn" title="Random 3">
+    <!-- play icon -->
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 3l14 9-14 9V3z"/></svg>
   </button>
 </div>
@@ -278,7 +281,7 @@
   <span class="close" onclick="closeModal('filterModal')">&times;</span>
   <div class="filter-modal-content" id="filterContent">
     <h3 id="filterTitle"></h3>
-    <div class="filter-search"><input type="text" id="filterSearch" placeholder="Search..."></div>
+    <div class="filter-search"><input type="text" id="filterSearch" placeholder="Search..." /></div>
     <div id="filterBody"></div>
   </div>
 </div>
@@ -286,30 +289,233 @@
 <script src="filters.js"></script>
 <script src="videos.js"></script>
 <script>
-// same JS logic from before (unchanged)
-function toArray(val){ if(!val) return []; if(Array.isArray(val)) return val.map(v=>v.trim()); return val.split(",").map(v=>v.trim()).filter(Boolean); }
+/* ---------- helpers ---------- */
+function toArray(val){
+  if(!val) return [];
+  if(Array.isArray(val)) return val.map(v=>String(v).trim());
+  return String(val).split(",").map(v=>v.trim()).filter(Boolean);
+}
 function shuffleArray(arr){ return arr.sort(()=>Math.random()-0.5); }
+function titleCase(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
 
-const perPage=12; let currentPage=1; let activeFilters={}; let filtered=shuffleArray([...videos]);
+/* ---------- state ---------- */
+const perPage = 12;
+let currentPage = 1;
+let activeFilters = { actress:[], studio:[], label:[], series:[], tags:[] };
+let filtered = shuffleArray([...videos]);
 
-function applyAllFilters(){ filtered=videos.filter(v=>{ return Object.entries(activeFilters).every(([k,vals])=>!vals.length||vals.some(val=>toArray(v[k]).includes(val))); }); filtered=shuffleArray(filtered); currentPage=1; renderVideos(); }
-function renderVideos(){ const grid=document.getElementById("videoGrid"); grid.innerHTML=""; const start=(currentPage-1)*perPage; const pageItems=filtered.slice(start,start+perPage); pageItems.forEach(v=>{ const card=document.createElement("div"); card.className="video-card"; card.innerHTML=`<img src="${v.thumbnail}" loading="lazy"><b>${v.title}</b>`; card.onclick=()=>openVideo(v); grid.appendChild(card); }); renderPagination(); window.scrollTo({top:0,behavior:"smooth"}); }
-function renderPagination(){ const totalPages=Math.ceil(filtered.length/perPage); const pag=document.getElementById("pagination"); pag.innerHTML=""; for(let i=1;i<=totalPages;i++){ const btn=document.createElement("button"); btn.textContent=i; if(i===currentPage) btn.classList.add("active"); btn.onclick=()=>{currentPage=i; renderVideos();}; pag.appendChild(btn);} }
+/* ---------- filter buttons openers (delegated) ---------- */
+document.getElementById("btn-actress").onclick = ()=>openFilter("actress");
+document.getElementById("btn-studio").onclick  = ()=>openFilter("studio");
+document.getElementById("btn-label").onclick   = ()=>openFilter("label");
+document.getElementById("btn-series").onclick  = ()=>openFilter("series");
+document.getElementById("btn-tags").onclick    = ()=>openFilter("tags");
 
-document.getElementById("searchBar").addEventListener("input",e=>{ const q=e.target.value.toLowerCase(); activeFilters={}; filtered=shuffleArray(videos.filter(v=> v.title.toLowerCase().includes(q) || v.code.toLowerCase().includes(q) || toArray(v.actress).some(a=>a.toLowerCase().includes(q)) || toArray(v.studio).some(s=>s.toLowerCase().includes(q)) || toArray(v.label).some(l=>l.toLowerCase().includes(q)) || toArray(v.series).some(s=>s.toLowerCase().includes(q)) || toArray(v.tags).some(t=>t.toLowerCase().includes(q)) )); currentPage=1; renderVideos(); });
+/* ---------- main filtering ---------- */
+function applyAllFilters(){
+  filtered = videos.filter(v=>{
+    return Object.entries(activeFilters).every(([key,vals])=>{
+      if(!vals || vals.length===0) return true;
+      const field = toArray(v[key]);
+      return vals.some(val => field.includes(val));
+    });
+  });
+  filtered = shuffleArray(filtered);
+  currentPage = 1;
+  renderVideos();
+}
 
-function openVideo(v){ document.getElementById("videoTitle").textContent=v.title; document.getElementById("videoPlayer").src=v.videoUrl; const details=`<p><b>Code:</b> <span onclick="setFilter('code','${v.code}')">${v.code}</span></p><p><b>Actress:</b> ${toArray(v.actress).map(a=>`<span onclick="setFilter('actress','${a}')">${a}</span>`).join(" ")}</p><p><b>Studio:</b> ${toArray(v.studio).map(s=>`<span onclick="setFilter('studio','${s}')">${s}</span>`).join(" ")}</p><p><b>Label:</b> ${toArray(v.label).map(l=>`<span onclick="setFilter('label','${l}')">${l}</span>`).join(" ")}</p><p><b>Series:</b> ${toArray(v.series).map(s=>`<span onclick="setFilter('series','${s}')">${s}</span>`).join(" ")}</p><p><b>Tags:</b> ${toArray(v.tags).map(t=>`<span onclick="setFilter('tags','${t}')">${t}</span>`).join(" ")}</p><p>${v.description}</p>`; document.getElementById("videoDetails").innerHTML=details; const gallery=document.getElementById("videoGallery"); gallery.innerHTML=""; v.gallery.forEach(img=>{ const el=document.createElement("img"); el.src=img; el.loading="lazy"; gallery.appendChild(el); }); document.getElementById("videoModal").style.display="flex"; }
-function closeModal(id){ document.getElementById(id).style.display="none"; if(id==="videoModal") document.getElementById("videoPlayer").src=""; }
+/* ---------- render videos ---------- */
+function renderVideos(){
+  const grid = document.getElementById("videoGrid");
+  grid.innerHTML = "";
+  const start = (currentPage-1)*perPage;
+  const pageItems = filtered.slice(start, start+perPage);
+  pageItems.forEach(v=>{
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.innerHTML = `<img src="${v.thumbnail}" loading="lazy" alt=""><b>${v.title}</b>`;
+    card.onclick = ()=>openVideo(v);
+    grid.appendChild(card);
+  });
+  renderPagination();
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
 
-function openFilter(type){ const modal=document.getElementById("filterModal"); const body=document.getElementById("filterBody"); const title=document.getElementById("filterTitle"); body.innerHTML=""; title.textContent="Choose "+type; let items; if(type==="tags"){ items=shuffleArray([...new Set(videos.flatMap(v=>toArray(v.tags)))]);} else { items=shuffleArray([...new Set(videos.flatMap(v=>toArray(v[type])))]);} const container=document.createElement("div"); container.className="grid-3"; items.forEach(it=>{ const count=videos.filter(v=>toArray(v[type]).includes(it)).length; const imgLink=(type==="tags"?filters.tags?.[it]:filters[type]?.[it])||"https://via.placeholder.com/200x300.png?text="+encodeURIComponent(it); const div=document.createElement("div"); div.innerHTML=`<img src="${imgLink}" loading="lazy"><span class="name">${it}</span><span class="count">${count} videos</span>`; div.onclick=()=>setFilter(type,it); container.appendChild(div); }); body.appendChild(container); const searchInput=document.getElementById("filterSearch"); searchInput.value=""; searchInput.oninput=()=>{ const q=searchInput.value.toLowerCase(); [...container.children].forEach(child=>{ const name=child.querySelector(".name").textContent.toLowerCase(); child.style.display=name.includes(q)?"block":"none"; }); }; modal.style.display="flex"; }
-function setFilter(type,val){ if(!activeFilters[type]) activeFilters[type]=[]; if(!activeFilters[type].includes(val)) activeFilters[type].push(val); applyAllFilters(); closeModal("filterModal"); closeModal("videoModal"); }
+/* ---------- windowed pagination (prev 3, current, next 3) ---------- */
+function renderPagination(){
+  const totalPages = Math.max(1, Math.ceil(filtered.length / perPage));
+  const pag = document.getElementById("pagination");
+  pag.innerHTML = "";
 
-document.getElementById("shuffleBtn").addEventListener("click",()=>{ filtered=shuffleArray([...filtered]); currentPage=1; renderVideos(); });
-document.getElementById("randomBtn").addEventListener("click",()=>{ const all=filtered.length?filtered:videos; const v=all[Math.floor(Math.random()*all.length)]; openVideo(v); });
-document.getElementById("homeBtn").addEventListener("click",()=>{ activeFilters={}; filtered=shuffleArray([...videos]); currentPage=1; renderVideos(); });
+  const start = Math.max(1, currentPage - 3);
+  const end   = Math.min(totalPages, currentPage + 3);
 
-const themeToggle=document.getElementById("themeToggle"); themeToggle.addEventListener("click",()=>{ document.body.classList.toggle("dark"); localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light"); }); if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark"); }
+  for(let i=start; i<=end; i++){
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    if(i===currentPage) btn.classList.add("active");
+    btn.onclick = ()=>{ currentPage = i; renderVideos(); };
+    pag.appendChild(btn);
+  }
+}
 
+/* ---------- search ---------- */
+document.getElementById("searchBar").addEventListener("input", e=>{
+  const q = e.target.value.toLowerCase();
+  // keep filters reset when searching
+  activeFilters = { actress:[], studio:[], label:[], series:[], tags:[] };
+  setAllFilterButtonsLabelToAll();
+  filtered = shuffleArray(videos.filter(v=>
+    v.title.toLowerCase().includes(q) ||
+    v.code.toLowerCase().includes(q) ||
+    toArray(v.actress).some(a=>a.toLowerCase().includes(q)) ||
+    toArray(v.studio).some(s=>s.toLowerCase().includes(q)) ||
+    toArray(v.label).some(l=>l.toLowerCase().includes(q)) ||
+    toArray(v.series).some(s=>s.toLowerCase().includes(q)) ||
+    toArray(v.tags).some(t=>t.toLowerCase().includes(q))
+  ));
+  currentPage=1; renderVideos();
+});
+
+/* ---------- video modal ---------- */
+function openVideo(v){
+  document.getElementById("videoTitle").textContent = v.title;
+  document.getElementById("videoPlayer").src = v.videoUrl;
+
+  const details = `
+    <p><b>Code:</b> <span onclick="setFilter('code','${v.code}')">${v.code}</span></p>
+    <p><b>Actress:</b> ${toArray(v.actress).map(a=>`<span onclick="setFilter('actress','${a}')">${a}</span>`).join(" ")}</p>
+    <p><b>Studio:</b> ${toArray(v.studio).map(s=>`<span onclick="setFilter('studio','${s}')">${s}</span>`).join(" ")}</p>
+    <p><b>Label:</b> ${toArray(v.label).map(l=>`<span onclick="setFilter('label','${l}')">${l}</span>`).join(" ")}</p>
+    <p><b>Series:</b> ${toArray(v.series).map(s=>`<span onclick="setFilter('series','${s}')">${s}</span>`).join(" ")}</p>
+    <p><b>Tags:</b> ${toArray(v.tags).map(t=>`<span onclick="setFilter('tags','${t}')">${t}</span>`).join(" ")}</p>
+    <p>${v.description}</p>
+  `;
+  document.getElementById("videoDetails").innerHTML = details;
+
+  const gallery = document.getElementById("videoGallery");
+  gallery.innerHTML = "";
+  (v.gallery||[]).forEach(src=>{
+    const img = document.createElement("img");
+    img.src = src; img.loading="lazy";
+    gallery.appendChild(img);
+  });
+
+  document.getElementById("videoModal").style.display="flex";
+}
+function closeModal(id){
+  document.getElementById(id).style.display="none";
+  if(id==="videoModal") document.getElementById("videoPlayer").src="";
+}
+
+/* ---------- filter modal ---------- */
+/* Show ALL options, even if 0 videos:
+   - keys from dataset (videos)
+   - keys from filters map images (filters.js) */
+function gatherAllKeys(type){
+  const fromVideos = new Set(videos.flatMap(v=>toArray(v[type])));
+  const mapObj = (type==="tags"? (filters.tags||{}) : (filters[type]||{}));
+  const fromMap = new Set(Object.keys(mapObj || {}));
+  const all = new Set([...fromVideos, ...fromMap]);
+  return [...all].filter(Boolean);
+}
+
+function openFilter(type){
+  const modal = document.getElementById("filterModal");
+  const body  = document.getElementById("filterBody");
+  const title = document.getElementById("filterTitle");
+  body.innerHTML = "";
+  title.textContent = "Choose " + titleCase(type);
+
+  const currentSelected = (activeFilters[type] && activeFilters[type][0]) || "All";
+
+  // Build full list, shuffled, but with "All" first and current selected second
+  const rawItems = gatherAllKeys(type);
+  const others = shuffleArray(rawItems.filter(x => x !== currentSelected));
+  const allOptions = ["All", currentSelected!=="All"?currentSelected:null, ...others].filter(Boolean);
+
+  const container = document.createElement("div");
+  container.className = "grid-3";
+
+  allOptions.forEach(it=>{
+    const imgLink = (type==="tags" ? (filters.tags?.[it]) : (filters[type]?.[it])) 
+                    || "https://via.placeholder.com/200x300.png?text=" + encodeURIComponent(it);
+    // Count from dataset; if absent = 0 (still shown)
+    const count = videos.filter(v=>toArray(v[type]).includes(it)).length;
+
+    const div = document.createElement("div");
+    div.className = "opt" + (it===currentSelected ? " selected" : "");
+    div.innerHTML = `
+      <img src="${imgLink}" loading="lazy" alt="">
+      <span class="name">${it}</span>
+      <span class="count">${count} videos</span>
+    `;
+    div.onclick = ()=>setFilter(type, it);
+    container.appendChild(div);
+  });
+
+  body.appendChild(container);
+
+  // Filter modal search (doesn't hide "All" unless query mismatches)
+  const searchInput = document.getElementById("filterSearch");
+  searchInput.value = "";
+  searchInput.oninput = ()=>{
+    const q = searchInput.value.toLowerCase();
+    [...container.children].forEach(child=>{
+      const name = child.querySelector(".name").textContent.toLowerCase();
+      child.style.display = name.includes(q) ? "block" : "none";
+    });
+  };
+
+  modal.style.display="flex";
+}
+
+function setFilter(type, val){
+  if(val==="All"){
+    activeFilters[type] = [];
+    document.getElementById("btn-"+type).textContent = titleCase(type)+": All";
+  }else{
+    activeFilters[type] = [val];
+    document.getElementById("btn-"+type).textContent = titleCase(type)+": " + val;
+  }
+  applyAllFilters();
+  closeModal("filterModal"); closeModal("videoModal");
+}
+
+/* ---------- top buttons ---------- */
+document.getElementById("shuffleBtn").addEventListener("click", ()=>{
+  filtered = shuffleArray([...filtered]); currentPage=1; renderVideos();
+});
+
+document.getElementById("randomBtn").addEventListener("click", ()=>{
+  const pool = (activeFilters && Object.values(activeFilters).some(v=>v && v.length)) ? filtered : videos;
+  const picks = shuffleArray([...pool]).slice(0,3);
+  filtered = picks; currentPage=1; renderVideos();
+});
+
+document.getElementById("homeBtn").addEventListener("click", ()=>{
+  activeFilters = { actress:[], studio:[], label:[], series:[], tags:[] };
+  setAllFilterButtonsLabelToAll();
+  filtered = shuffleArray([...videos]); currentPage=1; renderVideos();
+});
+
+function setAllFilterButtonsLabelToAll(){
+  ["actress","studio","label","series","tags"].forEach(t=>{
+    const el = document.getElementById("btn-"+t);
+    if(el) el.textContent = titleCase(t)+": All";
+  });
+}
+
+/* ---------- theme toggle ---------- */
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", ()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+});
+if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark"); }
+
+/* ---------- init ---------- */
 renderVideos();
 </script>
 </body>
