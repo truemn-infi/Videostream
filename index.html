@@ -151,8 +151,7 @@
   /* ---- Image spacing (equal, small, consistent) ---- */
   .video-card img {
     display:block;
-    width: 100%;   /* equal side margins */
-    margin: 5px;                /* small equal margin both sides */
+    width: 100%;   /* equal side margins */             
     aspect-ratio: 3/2;
     object-fit: contain;
     border-radius: 8px;
@@ -223,7 +222,7 @@
   .filter-modal-content {
     background: var(--card-bg);
     width: 96%; max-width: 620px;
-    margin: 36px auto; border-radius: 16px; padding: 14px 12px 16px;
+    margin: 36px auto; border-radius: 16px; padding: 5px 3px 5px;
     color: var(--text);
   }
   .filter-modal-content h3 { margin: 6px 4px 10px; }
@@ -240,15 +239,15 @@
   .grid-3 {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;                /* reduced from 12/14 -> tighter */
-    padding: 4px;            /* tighter side spacing */
+    gap: 2px;                /* reduced from 12/14 -> tighter */
+    padding: 2px;            /* tighter side spacing */
   }
-  @media (min-width: 600px) { .grid-3 { gap: 10px; } }
+  @media (min-width: 600px) { .grid-3 { gap: 2px; } }
   .grid-3 .opt {
     text-align:center; cursor:pointer;
     border: 2px solid transparent;
     border-radius: 10px;
-    padding: 4px;            /* reduced internal padding */
+    padding: 2px;            /* reduced internal padding */
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     background: #ffffff08;
   }
