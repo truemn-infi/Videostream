@@ -129,7 +129,8 @@
   @media (min-width: 640px) {
     .video-grid {
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      max-width: 1200px; margin: 0 auto;
+      max-width: 100%; /* Use full width on desktop */
+      margin: 0 auto;
     }
   }
   @media (min-width: 1024px) {
@@ -150,14 +151,24 @@
   /* ---- Image spacing (equal, small, consistent) ---- */
   .video-card img {
     display:block;
-    width: calc(100% - 10px);   /* equal side margins */
+    width: 100%;   /* equal side margins */
     margin: 5px;                /* small equal margin both sides */
-    aspect-ratio: 16/9;
-    object-fit: cover;
+    aspect-ratio: 3/2;
+    object-fit: contain;
     border-radius: 8px;
   }
   .video-card b {
-    display:block; padding: 8px 10px; font-size: 15px; text-align: center;
+    display: block;
+    padding: 8px 10px;
+    font-size: 15px;
+    text-align: left; /* Align titles to the left */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    max-height: 3.5em; 
+    height: 3.5em;
   }
 
   /* =============== PAGINATION =============== */
@@ -212,7 +223,7 @@
   .filter-modal-content {
     background: var(--card-bg);
     width: 96%; max-width: 620px;
-    margin: 36px auto; border-radius: 16px; padding: 5px 3px 5px;
+    margin: 36px auto; border-radius: 16px; padding: 14px 12px 16px;
     color: var(--text);
   }
   .filter-modal-content h3 { margin: 6px 4px 10px; }
@@ -229,15 +240,15 @@
   .grid-3 {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2px;                /* reduced from 12/14 -> tighter */
-    padding: 2px;            /* tighter side spacing */
+    gap: 8px;                /* reduced from 12/14 -> tighter */
+    padding: 4px;            /* tighter side spacing */
   }
-  @media (min-width: 600px) { .grid-3 { gap: 2px; } }
+  @media (min-width: 600px) { .grid-3 { gap: 10px; } }
   .grid-3 .opt {
     text-align:center; cursor:pointer;
     border: 2px solid transparent;
     border-radius: 10px;
-    padding: 2px;            /* reduced internal padding */
+    padding: 4px;            /* reduced internal padding */
     transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
     background: #ffffff08;
   }
@@ -280,13 +291,9 @@
   </div>
 </header>
 
-<!-- Filter buttons with selected text -->
+<!-- Filter buttons with selected text - Only Actress filter remains -->
 <div class="filter-buttons">
   <button onclick="openFilter('actress')" id="btn-actress" aria-label="Filter Actress">Actress: All</button>
-  <button onclick="openFilter('studio')" id="btn-studio" aria-label="Filter Studio">Studio: All</button>
-  <button onclick="openFilter('label')" id="btn-label" aria-label="Filter Label">Label: All</button>
-  <button onclick="openFilter('series')" id="btn-series" aria-label="Filter Series">Series: All</button>
-  <button onclick="openFilter('tags')" id="btn-tags" aria-label="Filter Tags">Tags: All</button>
   <button class="icon-btn" id="randomBtn" title="Show 3 random videos" aria-label="Random 3">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/></svg>
   </button>
@@ -515,12 +522,10 @@ function setFilter(type, val){
 }
 
 function updateFilterButtonsUI(){
-  const names = ["actress","studio","label","series","tags"];
-  names.forEach(t=>{
-    const btn = document.getElementById("btn-"+t);
-    const sel = (activeFilters[t] && activeFilters[t][0]) || "All";
-    btn.textContent = t.charAt(0).toUpperCase()+t.slice(1)+": " + sel;
-  });
+  // Only update the actress button since others were removed
+  const btn = document.getElementById("btn-actress");
+  const sel = (activeFilters.actress && activeFilters.actress[0]) || "All";
+  btn.textContent = "Actress: " + sel;
 }
 
 /* ================== Header Buttons ================== */
