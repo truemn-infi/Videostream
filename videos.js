@@ -15,7 +15,7 @@ const videos = [
     ],
     "description": "A homeless man discovers a time-stop device and now he wants to revenge on society. He begins to continually target Minamo, a extremely popular and rich influencer, who after the deeds starts to notice semen on her vagina and face, not understanding where it could come from.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/04/1start265pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/956b7e39960592bf0e30",
+    "videoUrl": "https://sextb.net/e/start-265-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00265/1start00265jp-2.jpg",
@@ -53,11 +53,12 @@ const videos = [
       "Beautiful Girl",
       "Married Woman",
       "Slut",
-      "Solowork"
+      "Solowork",
+      "Unscensored"
     ],
     "description": "Nene joins her husband on a company trip where he was supposed to bring along family. On that day, she discovers that she’s the only non-employee family member that joined, and feels tricked. That night during the banquet, the boss suggests her to perform some party tricks to entertain the guests, all right in front of Nene’s husband",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/08/FNS-089_1200.jpg",
-    "videoUrl": "https://javtiful.com/embed/84e98366b7596a15c5e1",
+    "videoUrl": "https://sextb.net/e/fns-089-rm",
     "gallery": [
       "https://cdn.faleno.net/top/wp-content/uploads/2025/08/DSC1189.jpg",
       "https://cdn.faleno.net/top/wp-content/uploads/2025/08/DSC3316_rt.jpg",
@@ -88,7 +89,7 @@ const videos = [
     ],
     "description": "The protagonist starts chatting with Minamo online and quickly realizes that she’s into cybersex, setting the base for a romantic relationship. Shortly after they meet in person and their fun continues: as she is overly horny and enthusiastic about sex, even allowing him multiple raw creampie shots.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/09/1start383pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/e034fbb983ac45d71ae3",
+    "videoUrl": "https://sextb.net/e/start-383-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00383/1start00383jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00383/1start00383jp-2.jpg",
@@ -124,7 +125,7 @@ const videos = [
     ],
     "description": "-",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/08/1start361pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/1fe576caea7139690ca9",
+    "videoUrl": "https://sextb.net/e/start-361-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00361/1start00361jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00361/1start00361jp-2.jpg",
@@ -166,7 +167,7 @@ const videos = [
     ],
     "description": "A fan appreciation video with Minamo fans, who are allowed to chase her for sex prizes. Also a final nice bukkake party.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/06/1start346pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/2560785fd198ab900c46",
+    "videoUrl": "https://sextb.net/e/start-346-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00346/1start00346jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00346/1start00346jp-2.jpg",
@@ -197,15 +198,15 @@ const videos = [
     "label": "START",
     "series": "-",
     "tags": [
-      "Sensored",
       "Beautiful Girl",
       "Solowork",
       "Uniform",
-      "Various Profession"
+      "Various Profession",
+      "Unscensored"
     ],
     "description": "In this edition Minamo works at a juvenile prison and she provides sex relief plus creampie as part of the program.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/06/1start320pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/91c401b813ab00dcc3e6",
+    "videoUrl": "https://sextb.net/e/start-320-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00320/1start00320pl.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00320/1start00320jp-1.jpg",
@@ -240,11 +241,11 @@ const videos = [
       "Solowork",
       "Special Effects",
       "Various Profession",
-      "Sensored"
+      "Unscensored"
     ],
     "description": "Minamo is a nerdy librarian who leads a double life as a pink ranger, fighting for justice and stuff. But what the public doesn’t see is the toll those battles take. This film offers a behind-the-scenes look at her special “maintenance” sessions. Also creampie and fapping to childhood memories.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/05/1start302pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/ff9b216081c75f229a36",
+    "videoUrl": "https://sextb.net/e/start-302-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00302v/1start00302vpl.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00302v/1start00302vjp-1.jpg",
@@ -277,7 +278,7 @@ const videos = [
     ],
     "description": "In this edition Nene works as a dental hygienist who has a secret side. She teaches us about keeping good dental hygiene while also banging her patients.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/07/FNS-066_1200.jpg",
-    "videoUrl": "https://javtiful.com/embed/096fba7e608ac5ed2d85",
+    "videoUrl": "https://sextb.net/e/fns-066-rm",
     "gallery": [
       "https://cdn.faleno.net/top/wp-content/uploads/2025/07/1_DSC04256_rt.jpg",
       "https://cdn.faleno.net/top/wp-content/uploads/2025/07/2_DSC05440_rt.jpg",
@@ -300,16 +301,16 @@ const videos = [
     "label": "ABF",
     "series": " Ecstatic Orgasm Face",
     "tags": [
-      "Sensored",
       "Threesome",
       "Blow",
       "Facial",
       "Shaved",
-      "Solowork"
+      "Solowork",
+      "Unscensored"
     ],
     "description": "The 3P scene is the main course and it was nice. Umi looks stunning as always, possibly even more skinny.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2023/10/118abf038pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/368e0b727cec0f8a2ccf",
+    "videoUrl": "https://sextb.net/e/abf-038-rm",
     "gallery": [
       "https://image.mgstage.com/images/prestige/abf/038/cap_e_0_abf-038.jpg",
       "https://image.mgstage.com/images/prestige/abf/038/cap_e_1_abf-038.jpg",
@@ -343,7 +344,7 @@ const videos = [
     ],
     "description": "-",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/08/sone855pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/206a40aad3a4bf668f97",
+    "videoUrl": "https://sextb.net/e/pxljmqwvi",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/sone00855/sone00855jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/sone00855/sone00855jp-2.jpg",
@@ -373,11 +374,11 @@ const videos = [
       "Creampie",
       "Kiss",
       "Solowork",
-      "Sensored"
+      "Unscensored"
     ],
     "description": "-",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/08/1start00382pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/411b60141543e2ec890f",
+    "videoUrl": "https://sextb.net/e/start-382-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start382/1start382jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/1start382/1start382jp-2.jpg",
@@ -419,7 +420,7 @@ const videos = [
     ],
     "description": "Shitara is a quiet, shy girl who maintains the image of a pure and innocent girlfriend. However, her boyfriend grows curious and secretly checks her phone, only to discover that she’s part of a group chat called “Public Toilet.” At first, he assumes it’s some kind of prank, but the harsh reality of his girlfriend being a slut soon sets in.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/01/cawd764pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/51b9d3e90088577ccf72",
+    "videoUrl": "https://sextb.net/e/hweblc1t9",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/cawd00764/cawd00764jp-1.jpg",
       "https://pics.dmm.co.jp/digital/video/cawd00764/cawd00764jp-2.jpg",
@@ -442,7 +443,6 @@ const videos = [
     "label": "START",
     "series": "-",
     "tags": [
-      "Sensored",
       "Threesome",
       "Foursome",
       "Creampie",
@@ -450,11 +450,12 @@ const videos = [
       "Slut",
       "Solowork",
       "Kimono",
-      "Mourning"
+      "Mourning",
+      "Unscensored"
     ],
     "description": "Suzu is a young female innkeeper who runs the business alongside her husband. To revitalize the business, she also begins working as a bathhouse girl in the hot spring area. One day, she ends up having sex with a married guy who used the bathhouse, and she is unable to forget the pleasure. From day on, she begins to have sex with the patrons, in full slut mode.",
     "thumbnail": "https://cdn.javsts.com/wp-content/uploads/2025/06/1start355pl.jpg",
-    "videoUrl": "https://javtiful.com/embed/992028df2c346b80f3f5",
+    "videoUrl": "https://sextb.net/e/start-355-rm",
     "gallery": [
       "https://pics.dmm.co.jp/digital/video/1start00355/1start00355pl.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00355/1start00355jp-1.jpg",
@@ -476,6 +477,217 @@ const videos = [
       "https://pics.dmm.co.jp/digital/video/1start00355/1start00355jp-17.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00355/1start00355jp-18.jpg",
       "https://pics.dmm.co.jp/digital/video/1start00355/1start00355jp-19.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "[MIDA-326] I was violated by perverted teachers I despise, losing control of my sensitive body… Silenced with F*rced moans, pierced from both ends in a silent gang assault Reina Miyashita",
+    "code": "MIDA-326",
+    "actress": "Miyashita Rena",
+    "studio": "Moodyz",
+    "label": "MIDA",
+    "series": "-",
+    "tags": [
+      "Abuse",
+      "Nasty",
+      "School Girl",
+      "Solowork",
+      "Uniform",
+      "Unscensored"
+    ],
+    "description": "A rebellious high school girl is targeted by a predatory teacher. After this initial exploited, other abusive teachers join the action.",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/08/mida326pl.jpg",
+    "videoUrl": "https://sextb.net/e/369eta7df",
+    "gallery": [
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-1.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-2.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-3.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-4.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-5.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-6.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-7.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-8.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-9.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-10.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-11.jpg",
+      "https://pics.dmm.co.jp/digital/video/mida00326/mida00326jp-12.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "[SONE-818] The cute college girl living next door has unexpectedly lost her memory!? “I’m your boyfriend!!” I make her believe it and we go wild with desire!! Miho Nana",
+    "code": "SONE-818",
+    "actress": "Miho Nana",
+    "studio": "S1 No.1 Style",
+    "label": "SONE",
+    "series": "-",
+    "tags": [
+      "Orgasm",
+      "Beautiful Girl",
+      "Cuckold",
+      "Drama",
+      "Slender",
+      "Solowork",
+      "Unscensored"
+    ],
+    "description": "-",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/07/sone818pl.jpg",
+    "videoUrl": "https://sextb.net/e/mso8twgl2",
+    "gallery": [
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818pl.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-1.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-2.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-3.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-4.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-5.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-6.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-7.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-8.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-9.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-10.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-11.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00818/sone00818jp-12.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "[FNS-067] Personal filming by a swimsuit maniac sticky old man: Protruding erect nipples and tight swimsuits digging into big buttocks. Ami Tokita",
+    "code": "FNS-067",
+    "actress": "Tokita Ami",
+    "studio": "Faleno",
+    "label": "FNS",
+    "series": "-",
+    "tags": [
+      "Beautiful Girl",
+      "Close Up",
+      "Lubricant",
+      "Solowork",
+      "Unscensored"
+    ],
+    "description": "-",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/07/FNS-067_1200.jpg",
+    "videoUrl": "https://sextb.net/e/fns-067-rm",
+    "gallery": [
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/01.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/02.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/03.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/04.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/05.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/06.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/07.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/08.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/09.jpg",
+      "https://cdn.faleno.net/top/wp-content/uploads/2025/07/10.jpg"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "[WAAA-519] Undercover agent dr*gged and tortured! Sensitive nipple abuse, orgasm submission mania Rin Suzunoya",
+    "code": "WAAA-519",
+    "actress": "Suzunoya Rin",
+    "studio": "Wanz Factory",
+    "label": "WAAA",
+    "series": "Undercover investigator drugged convulsing and incontinent! Sensitive nipples lynched submission and orgasmic madness",
+    "tags": [
+      "Orgasm",
+      "Confinement",
+      "Deep Throat",
+      "Female Investigator",
+      "Solowork",
+      "Unscensored"
+    ],
+    "description": "-",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/05/waaa519pl.jpg",
+    "videoUrl": "https://sextb.net/e/waaa-519-rm",
+    "gallery": [
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519pl.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-1.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-2.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-3.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-4.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-5.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-6.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-7.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-8.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-9.jpg",
+      "https://pics.dmm.co.jp/digital/video/waaa00519/waaa00519jp-10.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "[SONE-897] By the way, is the idol’s hot spring report really completely naked? ~An extreme prank pillow business shoot that can never be broadcast on terrestrial TV~ Rino Sakurano",
+    "code": "SONE-897",
+    "actress": "Sakura Norino",
+    "studio": "S1 No.1 Style",
+    "label": "SONE",
+    "series": "-",
+    "tags": [
+      "Threesome",
+      "Beautiful Girl",
+      "Entertainer",
+      "Hotspring",
+      "Slender",
+      "Solowork",
+      "Unscensored"
+    ],
+    "description": "-",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/09/sone897pl.jpg",
+    "videoUrl": "https://sextb.net/e/sone-897-rm",
+    "gallery": [
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-1.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-2.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-3.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-4.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-5.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-6.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-7.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-8.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-9.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-10.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-11.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-12.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00897/sone00897jp-13.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "[SONE-741] “It’s an easy job where you just show your boobs.” I applied thinking “If I can make money just by showing my tits, that’s easy lol” – Hayasaka Hime",
+    "code": "SONE-741",
+    "actress": "Hayasaka Hime",
+    "studio": "S1 No.1 Style",
+    "label": "SONE",
+    "series": "-",
+    "tags": [
+      "Beautiful Girl",
+      "Busty Fetish",
+      "Cosplay",
+      "Drama",
+      "Massage",
+      "Solowork",
+      "Unscensored"
+    ],
+    "description": "-",
+    "thumbnail": "https://cdn.javmiku.com/wp-content/uploads/2025/06/sone741pl.jpg",
+    "videoUrl": "https://sextb.net/e/7z0tg8n48",
+    "gallery": [
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741pl.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-1.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-2.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-3.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-4.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-5.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-6.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-7.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-8.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-9.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-10.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-11.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-12.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-13.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-14.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-15.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-16.jpg",
+      "https://pics.dmm.co.jp/digital/video/sone00741/sone00741jp-17.jpg"
     ]
   }
 ];
